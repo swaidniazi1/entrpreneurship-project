@@ -255,18 +255,7 @@ function renderSkills(list){
   });
 }
 
-function filterSkills(){
-  const q=document.getElementById("searchBox").value.toLowerCase();
-  const filtered=skills.filter(s=>s.toLowerCase().includes(q));
-  renderSkills(filtered);
-}
 
-function scrollToSection(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-
-renderSkills(skills);
-</script>
 
 </body>
 </html>
