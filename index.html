@@ -1,132 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Skill Swap</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  
   <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Poppins',sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    html {
+      scroll-behavior: smooth;
     }
 
-    body{
-      background:linear-gradient(135deg,#e9f2ff 0%, #f7e9ff 50%, #e9fff3 100%);
-      color:#1f1f1f;
-      overflow-x:hidden;
+    body {
+      background: linear-gradient(135deg, #e9f2ff 0%, #f7e9ff 50%, #e9fff3 100%);
+      color: #1f1f1f;
+      overflow-x: hidden;
     }
 
-    header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:14px 28px;
-      background:rgba(255,255,255,0.75);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid rgba(0,0,0,0.06);
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 28px;
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
-    .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;}
-
-    nav a{
-      margin:0 10px;
-      text-decoration:none;
-      color:#333;
-      font-weight:500;
-      cursor:pointer;
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
     }
 
-    nav a:hover{color:#4a6cf7;}
-
-    section{
-      padding:90px 20px;
-      max-width:1100px;
-      margin:auto;
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
     }
 
-    .hero{
-      text-align:center;
-      padding:120px 20px 90px;
+    nav a:hover {
+      color: #4a6cf7;
     }
 
-    .hero h1{
-      font-size:48px;
-      background:linear-gradient(135deg,#4a6cf7,#d63384);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+    section {
+      padding: 90px 20px;
+      max-width: 1100px;
+      margin: auto;
     }
 
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:20px;
+    .hero {
+      text-align: center;
+      padding: 120px 20px 90px;
     }
 
-    .card{
-      background:rgba(255,255,255,0.85);
-      padding:20px;
-      border-radius:16px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.06);
-      transition:0.3s;
+    .hero h1 {
+      font-size: 48px;
+      background: linear-gradient(135deg, #4a6cf7, #d63384);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .card:hover{
-      transform:translateY(-6px);
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
     }
 
     /* REVIEWS */
-    .review{
-      position:relative;
-      overflow:hidden;
-      cursor:pointer;
-      transition:0.3s;
-      min-height:90px;
+    .review {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: 0.3s;
+      min-height: 90px;
     }
 
-    .review p.full{
-      max-height:0;
-      opacity:0;
-      transition:0.4s ease;
-      margin-top:8px;
-      color:#555;
+    .review p.full {
+      max-height: 0;
+      opacity: 0;
+      transition: 0.4s ease;
+      margin-top: 8px;
+      color: #555;
     }
 
-    .review:hover{
-      transform:scale(1.03);
-      background:rgba(255,255,255,0.95);
-      box-shadow:0 15px 30px rgba(0,0,0,0.1);
+    .review:hover {
+      transform: scale(1.03);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     }
 
-    .review:hover p.full{
-      max-height:200px;
-      opacity:1;
+    .review:hover p.full {
+      max-height: 200px;
+      opacity: 1;
     }
 
-    .tag{
-      display:inline-block;
-      margin-top:8px;
-      padding:4px 10px;
-      background:#eef2ff;
-      border-radius:20px;
-      font-size:12px;
+    .tag {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 10px;
+      background: #eef2ff;
+      border-radius: 20px;
+      font-size: 12px;
     }
 
-    footer{
-      text-align:center;
-      padding:40px;
-      background:#111;
-      color:white;
-      margin-top:80px;
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: #111;
+      color: white;
+      margin-top: 80px;
     }
-
   </style>
 </head>
 
@@ -135,10 +145,10 @@
 <header>
   <div class="logo">Skill Swap</div>
   <nav>
-    <a onclick="scrollTo('home')">Home</a>
-    <a onclick="scrollTo('features')">Features</a>
-    <a onclick="scrollTo('profiles')">Profiles</a>
-    <a onclick="scrollTo('reviews')">Reviews</a>
+    <a href="#home">Home</a>
+    <a href="#features">Features</a>
+    <a href="#profiles">Profiles</a>
+    <a href="#reviews">Reviews</a>
   </nav>
 </header>
 
@@ -175,61 +185,47 @@
 <section id="reviews">
   <h2>User Reviews (Hover to read more)</h2>
   <div class="grid">
-
     <div class="card review">
       <b>Ayesha Khan (Lahore)</b>
       <span class="tag">5★</span>
       <p class="full">Skill Swap helped me improve my English speaking skills. I exchanged my graphic design knowledge and got amazing learning experience without spending money.</p>
     </div>
-
     <div class="card review">
       <b>Ali Raza (Karachi)</b>
       <span class="tag">4.8★</span>
       <p class="full">I learned advanced marketing strategies by teaching coding. This platform creates real value exchange between users.</p>
     </div>
-
     <div class="card review">
       <b>Hassan Ahmed (Islamabad)</b>
       <span class="tag">4.9★</span>
       <p class="full">As a photographer, I taught photography basics and learned video editing in return. Very practical platform.</p>
     </div>
-
     <div class="card review">
       <b>Fatima Noor (Rawalpindi)</b>
       <span class="tag">5★</span>
       <p class="full">This platform is perfect for students like me who cannot afford expensive courses. Pure knowledge exchange.</p>
     </div>
-
     <div class="card review">
       <b>Usman Tariq (Faisalabad)</b>
       <span class="tag">4.7★</span>
       <p class="full">The idea is brilliant. I improved my freelancing skills while helping others learn mine.</p>
     </div>
-
     <div class="card review">
       <b>Zainab Malik (Multan)</b>
       <span class="tag">4.8★</span>
       <p class="full">Feels like a real community where everyone helps each other grow through skills.</p>
     </div>
-
     <div class="card review">
       <b>Bilal Sheikh (Peshawar)</b>
       <span class="tag">5★</span>
       <p class="full">Highly recommended platform for anyone who wants to learn new skills without money barrier.</p>
     </div>
-
   </div>
 </section>
 
 <footer>
   © 2026 Skill Swap Platform
 </footer>
-
-<script>
-function scrollTo(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-</script>
 
 </body>
 </html>
