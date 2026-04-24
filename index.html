@@ -34,13 +34,7 @@
       border-bottom:1px solid rgba(0,0,0,0.06);
     }
 
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:700;
-      font-size:18px;
-    }
+    .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;}
 
     nav a{
       margin:0 10px;
@@ -52,42 +46,19 @@
 
     nav a:hover{color:#4a6cf7;}
 
-    .cta-group{
-      display:flex;
-      gap:8px;
-    }
-
-    .btn{
-      padding:10px 16px;
-      border:none;
-      border-radius:999px;
-      cursor:pointer;
-      background:linear-gradient(135deg,#4a6cf7,#7b5cff);
-      color:white;
-      font-weight:500;
-    }
-
     section{
-      padding:70px 20px;
+      padding:90px 20px;
       max-width:1100px;
       margin:auto;
-      display:none;
     }
-
-    section.active{
-      display:block;
-    }
-
-    h2{text-align:center;margin-bottom:30px;}
 
     .hero{
       text-align:center;
-      padding:90px 20px;
-      display:block;
+      padding:120px 20px 90px;
     }
 
     .hero h1{
-      font-size:46px;
+      font-size:48px;
       background:linear-gradient(135deg,#4a6cf7,#d63384);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
@@ -104,23 +75,56 @@
       padding:20px;
       border-radius:16px;
       box-shadow:0 10px 25px rgba(0,0,0,0.06);
+      transition:0.3s;
     }
 
-    input{
-      padding:12px;
-      width:100%;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,0.1);
-      margin-bottom:12px;
+    .card:hover{
+      transform:translateY(-6px);
     }
 
-    .skill-item{
-      padding:10px;
-      background:#fff;
-      border-radius:10px;
-      margin:6px 0;
-      box-shadow:0 5px 15px rgba(0,0,0,0.05);
+    /* REVIEWS */
+    .review{
+      position:relative;
+      overflow:hidden;
       cursor:pointer;
+      transition:0.3s;
+      min-height:90px;
+    }
+
+    .review p.full{
+      max-height:0;
+      opacity:0;
+      transition:0.4s ease;
+      margin-top:8px;
+      color:#555;
+    }
+
+    .review:hover{
+      transform:scale(1.03);
+      background:rgba(255,255,255,0.95);
+      box-shadow:0 15px 30px rgba(0,0,0,0.1);
+    }
+
+    .review:hover p.full{
+      max-height:200px;
+      opacity:1;
+    }
+
+    .tag{
+      display:inline-block;
+      margin-top:8px;
+      padding:4px 10px;
+      background:#eef2ff;
+      border-radius:20px;
+      font-size:12px;
+    }
+
+    footer{
+      text-align:center;
+      padding:40px;
+      background:#111;
+      color:white;
+      margin-top:80px;
     }
 
   </style>
@@ -130,27 +134,19 @@
 
 <header>
   <div class="logo">Skill Swap</div>
-
   <nav>
-    <a onclick="showSection('home')">Home</a>
-    <a onclick="showSection('features')">Features</a>
-    <a onclick="showSection('profiles')">Profiles</a>
-    <a onclick="showSection('findmatch')">Find Match</a>
-    <a onclick="showSection('testimonials')">Testimonials</a>
+    <a onclick="scrollTo('home')">Home</a>
+    <a onclick="scrollTo('features')">Features</a>
+    <a onclick="scrollTo('profiles')">Profiles</a>
+    <a onclick="scrollTo('reviews')">Reviews</a>
   </nav>
-
-  <div class="cta-group">
-    <button class="btn">Get Started</button>
-  </div>
 </header>
 
-<!-- HOME -->
-<section id="home" class="hero active">
+<section id="home" class="hero">
   <h1>Skill Swap Platform</h1>
-  <p>Exchange skills without money. Learn, teach and grow together.</p>
+  <p>Exchange skills without money. Learn, teach, grow.</p>
 </section>
 
-<!-- FEATURES -->
 <section id="features">
   <h2>Features</h2>
   <div class="grid">
@@ -164,60 +160,75 @@
   </div>
 </section>
 
-<!-- PROFILES -->
 <section id="profiles">
   <h2>Profiles</h2>
   <div class="grid">
     <div class="card">Ayesha - English Teacher</div>
     <div class="card">Ali - Coding Expert</div>
     <div class="card">Hassan - Photographer</div>
+    <div class="card">Fatima - Designer</div>
+    <div class="card">Usman - Developer</div>
+    <div class="card">Zainab - Marketer</div>
   </div>
 </section>
 
-<!-- FIND MATCH -->
-<section id="findmatch">
-  <h2>Find Match</h2>
-  <input type="text" placeholder="Search skills..." onkeyup="filterSkills()">
-  <div id="skillsList"></div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimonials">
-  <h2>Testimonials</h2>
+<section id="reviews">
+  <h2>User Reviews (Hover to read more)</h2>
   <div class="grid">
-    <div class="card">Ayesha Khan: Great platform!</div>
-    <div class="card">Ali Raza: Very useful!</div>
-    <div class="card">Hassan Ahmed: Loved it!</div>
-    <div class="card">Fatima Noor: Amazing idea!</div>
+
+    <div class="card review">
+      <b>Ayesha Khan (Lahore)</b>
+      <span class="tag">5★</span>
+      <p class="full">Skill Swap helped me improve my English speaking skills. I exchanged my graphic design knowledge and got amazing learning experience without spending money.</p>
+    </div>
+
+    <div class="card review">
+      <b>Ali Raza (Karachi)</b>
+      <span class="tag">4.8★</span>
+      <p class="full">I learned advanced marketing strategies by teaching coding. This platform creates real value exchange between users.</p>
+    </div>
+
+    <div class="card review">
+      <b>Hassan Ahmed (Islamabad)</b>
+      <span class="tag">4.9★</span>
+      <p class="full">As a photographer, I taught photography basics and learned video editing in return. Very practical platform.</p>
+    </div>
+
+    <div class="card review">
+      <b>Fatima Noor (Rawalpindi)</b>
+      <span class="tag">5★</span>
+      <p class="full">This platform is perfect for students like me who cannot afford expensive courses. Pure knowledge exchange.</p>
+    </div>
+
+    <div class="card review">
+      <b>Usman Tariq (Faisalabad)</b>
+      <span class="tag">4.7★</span>
+      <p class="full">The idea is brilliant. I improved my freelancing skills while helping others learn mine.</p>
+    </div>
+
+    <div class="card review">
+      <b>Zainab Malik (Multan)</b>
+      <span class="tag">4.8★</span>
+      <p class="full">Feels like a real community where everyone helps each other grow through skills.</p>
+    </div>
+
+    <div class="card review">
+      <b>Bilal Sheikh (Peshawar)</b>
+      <span class="tag">5★</span>
+      <p class="full">Highly recommended platform for anyone who wants to learn new skills without money barrier.</p>
+    </div>
+
   </div>
 </section>
 
-<footer style="text-align:center;padding:20px;background:#111;color:#fff;">
-© 2026 Skill Swap
+<footer>
+  © 2026 Skill Swap Platform
 </footer>
 
 <script>
-const skills=["Accounting","Blogging","Coding","Cooking","Design","English Speaking","Fitness","Graphic Design","Marketing","Photography","Public Speaking","Video Editing","Web Development"];
-
-function filterSkills(){
-  const q=document.querySelector('#findmatch input').value.toLowerCase();
-  const box=document.getElementById("skillsList");
-  box.innerHTML="";
-  skills.filter(s=>s.toLowerCase().includes(q)).sort().forEach(s=>{
-    const div=document.createElement("div");
-    div.className="skill-item";
-    div.innerText=s;
-    box.appendChild(div);
-  });
+function scrollTo(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
-
-function showSection(id){
-  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
-
-// default render
-filterSkills();
 </script>
 
 </body>
