@@ -42,14 +42,27 @@
       font-size:18px;
     }
 
-    .logo img{width:38px;}
-
     nav a{
       margin:0 10px;
       text-decoration:none;
       color:#333;
       font-weight:500;
+      position:relative;
+      cursor:pointer;
     }
+
+    nav a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-4px;
+      width:0;
+      height:2px;
+      background:#4a6cf7;
+      transition:0.3s;
+    }
+
+    nav a:hover::after{width:100%;}
 
     .cta-group{
       display:flex;
@@ -99,11 +112,14 @@
       color:#555;
       margin-top:10px;
       max-width:700px;
-      margin-left:auto;
-      margin-right:auto;
+      margin:auto;
     }
 
-    section{padding:70px 20px;max-width:1100px;margin:auto;}
+    section{
+      padding:70px 20px;
+      max-width:1100px;
+      margin:auto;
+    }
 
     h2{text-align:center;margin-bottom:30px;}
 
@@ -120,13 +136,12 @@
       box-shadow:0 10px 25px rgba(0,0,0,0.06);
     }
 
-    .profile-badge{
-      display:inline-block;
-      margin-top:10px;
-      padding:5px 12px;
-      border-radius:20px;
-      font-size:12px;
-      background:linear-gradient(135deg,#e3ecff,#f3e3ff);
+    input{
+      padding:12px;
+      width:100%;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.1);
+      margin-bottom:12px;
     }
 
     footer{
@@ -136,6 +151,16 @@
       color:white;
       margin-top:40px;
     }
+
+    .skill-item{
+      padding:10px;
+      background:#fff;
+      border-radius:10px;
+      margin:6px 0;
+      box-shadow:0 5px 15px rgba(0,0,0,0.05);
+      cursor:pointer;
+    }
+
   </style>
 </head>
 
@@ -144,87 +169,105 @@
 <header>
   <div class="logo">
     <svg width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="sgrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#4a6cf7"/>
-      <stop offset="100%" stop-color="#d63384"/>
-    </linearGradient>
-
-    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-      <path d="M0,0 L8,4 L0,8 Z" fill="#6c63ff"/>
-    </marker>
-  </defs>
-
-  <path d="M70 15 C20 15, 20 45, 70 50 C120 55, 120 85, 30 85"
-        stroke="url(#sgrad)"
-        stroke-width="10"
-        fill="none"
-        stroke-linecap="round"
-        marker-start="url(#arrow)"
-        marker-end="url(#arrow)" />
-</svg>
+      <defs>
+        <linearGradient id="sgrad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#4a6cf7"/>
+          <stop offset="100%" stop-color="#d63384"/>
+        </linearGradient>
+        <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+          <path d="M0,0 L8,4 L0,8 Z" fill="#6c63ff"/>
+        </marker>
+      </defs>
+      <path d="M70 15 C20 15, 20 45, 70 50 C120 55, 120 85, 30 85"
+            stroke="url(#sgrad)"
+            stroke-width="10"
+            fill="none"
+            stroke-linecap="round"
+            marker-start="url(#arrow)"
+            marker-end="url(#arrow)" />
+    </svg>
     Skill Swap
   </div>
 
   <nav>
-    <a href="#features">Features</a>
-    <a href="#profiles">Profiles</a>
-    <a href="#testimonials">Testimonials</a>
+    <a onclick="scrollToSection('features')">Features</a>
+    <a onclick="scrollToSection('profiles')">Profiles</a>
+    <a onclick="scrollToSection('findmatch')">Find Match</a>
+    <a onclick="scrollToSection('testimonials')">Testimonials</a>
   </nav>
 
   <div class="cta-group">
-    <button class="btn secondary" onclick="openModal()">Sign In</button>
+    <button class="btn secondary">Sign In</button>
     <button class="btn">Get Started</button>
   </div>
 </header>
 
 <section class="hero">
   <h1>Skill Swap Platform</h1>
-
   <div class="tagline">Skill Swap – Free Skill Exchange Platform</div>
-  <div class="desc">
-    A community where you can learn new skills by teaching what you know. No money involved—just knowledge, collaboration, and growth.
-  </div>
+  <div class="desc">A community where you can learn new skills by teaching what you know. No money involved—just knowledge, collaboration, and growth.</div>
+</section>
+
+<section id="findmatch">
+  <h2>Find Match (Search Skills)</h2>
+  <input type="text" id="searchBox" placeholder="Search skills alphabetically..." onkeyup="filterSkills()">
+  <div id="skillsList"></div>
 </section>
 
 <section id="features">
-  <h2>Platform Features</h2>
+  <h2>Features</h2>
   <div class="grid">
-    <div class="card">User Profiles with skills offered & needed</div>
-    <div class="card">Smart Skill Search System</div>
-    <div class="card">Matching based on skills</div>
-    <div class="card">Chat & Messaging system</div>
-    <div class="card">Session Scheduling</div>
-    <div class="card">Ratings & Feedback</div>
-    <div class="card">Points & Badges Gamification</div>
-  </div>
-</section>
-
-<section id="profiles">
-  <h2>Top Users</h2>
-  <div class="grid">
-    <div class="card"><b>Ayesha Khan</b><p>Teaches English</p><p>Wants Graphic Design</p><span class="profile-badge">⭐ 4.8</span></div>
-    <div class="card"><b>Ali Raza</b><p>Teaches Coding</p><p>Wants Marketing</p><span class="profile-badge">⭐ 4.7</span></div>
-    <div class="card"><b>Hassan Ahmed</b><p>Teaches Photography</p><p>Wants Video Editing</p><span class="profile-badge">⭐ 4.9</span></div>
+    <div class="card">User Profiles</div>
+    <div class="card">Skill Search System</div>
+    <div class="card">Matching Algorithm</div>
+    <div class="card">Chat System</div>
+    <div class="card">Scheduling</div>
+    <div class="card">Ratings</div>
+    <div class="card">Gamification</div>
   </div>
 </section>
 
 <section id="testimonials">
   <h2>Testimonials</h2>
   <div class="grid">
-    <div class="card">Ayesha Khan (Lahore): "Skill Swap helped me improve my spoken English by teaching basic graphic design in return. It’s amazing to learn without paying!"</div>
-    <div class="card">Ali Raza (Karachi): "I exchanged coding lessons for digital marketing skills. This platform really connects people in a meaningful way."</div>
-    <div class="card">Hassan Ahmed (Islamabad): "I always wanted to learn video editing. Through Skill Swap, I taught photography and learned editing for free."</div>
-    <div class="card">Fatima Noor (Rawalpindi): "As a student, I couldn’t afford courses. Skill Swap gave me access to learning through real people."</div>
-    <div class="card">Usman Tariq (Faisalabad): "The idea of skill exchange is brilliant. I improved my freelancing skills while helping others."</div>
-    <div class="card">Zainab Malik (Multan): "I love how easy it is to find people willing to teach and learn. It feels like a community."</div>
-    <div class="card">Bilal Sheikh (Peshawar): "I gained confidence by teaching and learning at the same time. Highly recommended platform!"</div>
+    <div class="card">Ayesha Khan (Lahore): "Skill Swap helped me improve English..."</div>
+    <div class="card">Ali Raza (Karachi): "I exchanged coding for marketing..."</div>
+    <div class="card">Hassan Ahmed (Islamabad): "Learned video editing for free..."</div>
+    <div class="card">Fatima Noor (Rawalpindi): "Great for students..."</div>
+    <div class="card">Usman Tariq (Faisalabad): "Amazing idea..."</div>
+    <div class="card">Zainab Malik (Multan): "Feels like a community..."</div>
+    <div class="card">Bilal Sheikh (Peshawar): "Highly recommended..."</div>
   </div>
 </section>
 
-<footer>
-  © 2026 Skill Swap Platform
-</footer>
+<footer>© 2026 Skill Swap</footer>
+
+<script>
+const skills=["Accounting","Blogging","Coding","Cooking","Design","English Speaking","Fitness","Graphic Design","Marketing","Photography","Public Speaking","Video Editing","Web Development"];
+
+function renderSkills(list){
+  const box=document.getElementById("skillsList");
+  box.innerHTML="";
+  list.sort().forEach(s=>{
+    const div=document.createElement("div");
+    div.className="skill-item";
+    div.innerText=s;
+    box.appendChild(div);
+  });
+}
+
+function filterSkills(){
+  const q=document.getElementById("searchBox").value.toLowerCase();
+  const filtered=skills.filter(s=>s.toLowerCase().includes(q));
+  renderSkills(filtered);
+}
+
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+renderSkills(skills);
+</script>
 
 </body>
 </html>
