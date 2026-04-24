@@ -47,31 +47,14 @@
       text-decoration:none;
       color:#333;
       font-weight:500;
-      position:relative;
       cursor:pointer;
     }
 
-    nav a::after{
-      content:'';
-      position:absolute;
-      left:0;
-      bottom:-4px;
-      width:0;
-      height:2px;
-      background:#4a6cf7;
-      transition:0.3s;
-    }
-
-    nav a:hover::after{width:100%;}
+    nav a:hover{color:#4a6cf7;}
 
     .cta-group{
       display:flex;
-      align-items:center;
       gap:8px;
-      background:rgba(255,255,255,0.6);
-      padding:6px;
-      border-radius:40px;
-      border:1px solid rgba(0,0,0,0.06);
     }
 
     .btn{
@@ -84,15 +67,23 @@
       font-weight:500;
     }
 
-    .btn.secondary{
-      background:transparent;
-      color:#333;
-      border:1px solid rgba(0,0,0,0.1);
+    section{
+      padding:70px 20px;
+      max-width:1100px;
+      margin:auto;
+      display:none;
     }
+
+    section.active{
+      display:block;
+    }
+
+    h2{text-align:center;margin-bottom:30px;}
 
     .hero{
       text-align:center;
-      padding:80px 20px 40px;
+      padding:90px 20px;
+      display:block;
     }
 
     .hero h1{
@@ -101,27 +92,6 @@
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
-
-    .tagline{
-      font-size:20px;
-      font-weight:600;
-      margin-top:10px;
-    }
-
-    .desc{
-      color:#555;
-      margin-top:10px;
-      max-width:700px;
-      margin:auto;
-    }
-
-    section{
-      padding:70px 20px;
-      max-width:1100px;
-      margin:auto;
-    }
-
-    h2{text-align:center;margin-bottom:30px;}
 
     .grid{
       display:grid;
@@ -144,14 +114,6 @@
       margin-bottom:12px;
     }
 
-    footer{
-      text-align:center;
-      padding:25px;
-      background:#111;
-      color:white;
-      margin-top:40px;
-    }
-
     .skill-item{
       padding:10px;
       background:#fff;
@@ -167,53 +129,28 @@
 <body>
 
 <header>
-  <div class="logo">
-    <svg width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="sgrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#4a6cf7"/>
-          <stop offset="100%" stop-color="#d63384"/>
-        </linearGradient>
-        <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#6c63ff"/>
-        </marker>
-      </defs>
-      <path d="M70 15 C20 15, 20 45, 70 50 C120 55, 120 85, 30 85"
-            stroke="url(#sgrad)"
-            stroke-width="10"
-            fill="none"
-            stroke-linecap="round"
-            marker-start="url(#arrow)"
-            marker-end="url(#arrow)" />
-    </svg>
-    Skill Swap
-  </div>
+  <div class="logo">Skill Swap</div>
 
   <nav>
-    <a onclick="scrollToSection('features')">Features</a>
-    <a onclick="scrollToSection('profiles')">Profiles</a>
-    <a onclick="scrollToSection('findmatch')">Find Match</a>
-    <a onclick="scrollToSection('testimonials')">Testimonials</a>
+    <a onclick="showSection('home')">Home</a>
+    <a onclick="showSection('features')">Features</a>
+    <a onclick="showSection('profiles')">Profiles</a>
+    <a onclick="showSection('findmatch')">Find Match</a>
+    <a onclick="showSection('testimonials')">Testimonials</a>
   </nav>
 
   <div class="cta-group">
-    <button class="btn secondary">Sign In</button>
     <button class="btn">Get Started</button>
   </div>
 </header>
 
-<section class="hero">
+<!-- HOME -->
+<section id="home" class="hero active">
   <h1>Skill Swap Platform</h1>
-  <div class="tagline">Skill Swap – Free Skill Exchange Platform</div>
-  <div class="desc">A community where you can learn new skills by teaching what you know. No money involved—just knowledge, collaboration, and growth.</div>
+  <p>Exchange skills without money. Learn, teach and grow together.</p>
 </section>
 
-<section id="findmatch">
-  <h2>Find Match (Search Skills)</h2>
-  <input type="text" id="searchBox" placeholder="Search skills alphabetically..." onkeyup="filterSkills()">
-  <div id="skillsList"></div>
-</section>
-
+<!-- FEATURES -->
 <section id="features">
   <h2>Features</h2>
   <div class="grid">
@@ -227,22 +164,61 @@
   </div>
 </section>
 
-<section id="testimonials">
-  <h2>Testimonials</h2>
+<!-- PROFILES -->
+<section id="profiles">
+  <h2>Profiles</h2>
   <div class="grid">
-    <div class="card">Ayesha Khan (Lahore): "Skill Swap helped me improve English..."</div>
-    <div class="card">Ali Raza (Karachi): "I exchanged coding for marketing..."</div>
-    <div class="card">Hassan Ahmed (Islamabad): "Learned video editing for free..."</div>
-    <div class="card">Fatima Noor (Rawalpindi): "Great for students..."</div>
-    <div class="card">Usman Tariq (Faisalabad): "Amazing idea..."</div>
-    <div class="card">Zainab Malik (Multan): "Feels like a community..."</div>
-    <div class="card">Bilal Sheikh (Peshawar): "Highly recommended..."</div>
+    <div class="card">Ayesha - English Teacher</div>
+    <div class="card">Ali - Coding Expert</div>
+    <div class="card">Hassan - Photographer</div>
   </div>
 </section>
 
-<footer>© 2026 Skill Swap</footer>
+<!-- FIND MATCH -->
+<section id="findmatch">
+  <h2>Find Match</h2>
+  <input type="text" placeholder="Search skills..." onkeyup="filterSkills()">
+  <div id="skillsList"></div>
+</section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <div class="grid">
+    <div class="card">Ayesha Khan: Great platform!</div>
+    <div class="card">Ali Raza: Very useful!</div>
+    <div class="card">Hassan Ahmed: Loved it!</div>
+    <div class="card">Fatima Noor: Amazing idea!</div>
+  </div>
+</section>
 
+<footer style="text-align:center;padding:20px;background:#111;color:#fff;">
+© 2026 Skill Swap
+</footer>
+
+<script>
+const skills=["Accounting","Blogging","Coding","Cooking","Design","English Speaking","Fitness","Graphic Design","Marketing","Photography","Public Speaking","Video Editing","Web Development"];
+
+function filterSkills(){
+  const q=document.querySelector('#findmatch input').value.toLowerCase();
+  const box=document.getElementById("skillsList");
+  box.innerHTML="";
+  skills.filter(s=>s.toLowerCase().includes(q)).sort().forEach(s=>{
+    const div=document.createElement("div");
+    div.className="skill-item";
+    div.innerText=s;
+    box.appendChild(div);
+  });
+}
+
+function showSection(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+// default render
+filterSkills();
+</script>
 
 </body>
 </html>
