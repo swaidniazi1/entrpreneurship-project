@@ -243,18 +243,6 @@
 <footer>© 2026 Skill Swap</footer>
 
 
-
-function renderSkills(list){
-  const box=document.getElementById("skillsList");
-  box.innerHTML="";
-  list.sort().forEach(s=>{
-    const div=document.createElement("div");
-    div.className="skill-item";
-    div.innerText=s;
-    box.appendChild(div);
-  });
-}
-
 function filterSkills(){
   const q=document.getElementById("searchBox").value.toLowerCase();
   const filtered=skills.filter(s=>s.toLowerCase().includes(q));
