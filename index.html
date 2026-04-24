@@ -143,7 +143,26 @@
 
 <header>
   <div class="logo">
-    <img src="assets/logo.svg">
+    <svg width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="sgrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4a6cf7"/>
+      <stop offset="100%" stop-color="#d63384"/>
+    </linearGradient>
+
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#6c63ff"/>
+    </marker>
+  </defs>
+
+  <path d="M70 15 C20 15, 20 45, 70 50 C120 55, 120 85, 30 85"
+        stroke="url(#sgrad)"
+        stroke-width="10"
+        fill="none"
+        stroke-linecap="round"
+        marker-start="url(#arrow)"
+        marker-end="url(#arrow)" />
+</svg>
     Skill Swap
   </div>
 
