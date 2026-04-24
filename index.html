@@ -5,243 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skill Swap</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:'Poppins',sans-serif;
-    }
-
-    body{
-      background:linear-gradient(135deg,#e9f2ff 0%, #f7e9ff 50%, #e9fff3 100%);
-      color:#1f1f1f;
-      overflow-x:hidden;
-    }
-
-    header{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:14px 28px;
-      background:rgba(255,255,255,0.75);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid rgba(0,0,0,0.06);
-    }
-
-    .logo{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:700;
-      font-size:18px;
-    }
-
-    nav a{
-      margin:0 10px;
-      text-decoration:none;
-      color:#333;
-      font-weight:500;
-      position:relative;
-      cursor:pointer;
-    }
-
-    nav a::after{
-      content:'';
-      position:absolute;
-      left:0;
-      bottom:-4px;
-      width:0;
-      height:2px;
-      background:#4a6cf7;
-      transition:0.3s;
-    }
-
-    nav a:hover::after{width:100%;}
-
-    .cta-group{
-      display:flex;
-      align-items:center;
-      gap:8px;
-      background:rgba(255,255,255,0.6);
-      padding:6px;
-      border-radius:40px;
-      border:1px solid rgba(0,0,0,0.06);
-    }
-
-    .btn{
-      padding:10px 16px;
-      border:none;
-      border-radius:999px;
-      cursor:pointer;
-      background:linear-gradient(135deg,#4a6cf7,#7b5cff);
-      color:white;
-      font-weight:500;
-    }
-
-    .btn.secondary{
-      background:transparent;
-      color:#333;
-      border:1px solid rgba(0,0,0,0.1);
-    }
-
-    .hero{
-      text-align:center;
-      padding:80px 20px 40px;
-    }
-
-    .hero h1{
-      font-size:46px;
-      background:linear-gradient(135deg,#4a6cf7,#d63384);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-    }
-
-    .tagline{
-      font-size:20px;
-      font-weight:600;
-      margin-top:10px;
-    }
-
-    .desc{
-      color:#555;
-      margin-top:10px;
-      max-width:700px;
-      margin:auto;
-    }
-
-    section{
-      padding:70px 20px;
-      max-width:1100px;
-      margin:auto;
-    }
-
-    h2{text-align:center;margin-bottom:30px;}
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-      gap:20px;
-    }
-
-    .card{
-      background:rgba(255,255,255,0.85);
-      padding:20px;
-      border-radius:16px;
-      box-shadow:0 10px 25px rgba(0,0,0,0.06);
-    }
-
-    input{
-      padding:12px;
-      width:100%;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,0.1);
-      margin-bottom:12px;
-    }
-
-    footer{
-      text-align:center;
-      padding:25px;
-      background:#111;
-      color:white;
-      margin-top:40px;
-    }
-
-    .skill-item{
-      padding:10px;
-      background:#fff;
-      border-radius:10px;
-      margin:6px 0;
-      box-shadow:0 5px 15px rgba(0,0,0,0.05);
-      cursor:pointer;
-    }
-
-  </style>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
 <header>
   <div class="logo">
-    <svg width="38" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="sgrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#4a6cf7"/>
-          <stop offset="100%" stop-color="#d63384"/>
-        </linearGradient>
-        <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
-          <path d="M0,0 L8,4 L0,8 Z" fill="#6c63ff"/>
-        </marker>
-      </defs>
-      <path d="M70 15 C20 15, 20 45, 70 50 C120 55, 120 85, 30 85"
-            stroke="url(#sgrad)"
-            stroke-width="10"
-            fill="none"
-            stroke-linecap="round"
-            marker-start="url(#arrow)"
-            marker-end="url(#arrow)" />
-    </svg>
-    Skill Swap
+    <img src="assets/logo.svg" alt="logo">
+    <span>Skill Swap</span>
   </div>
-
   <nav>
-    <a onclick="scrollToSection('features')">Features</a>
-    <a onclick="scrollToSection('profiles')">Profiles</a>
-    <a onclick="scrollToSection('findmatch')">Find Match</a>
-    <a onclick="scrollToSection('testimonials')">Testimonials</a>
+    <a href="#">Home</a>
+    <a href="#skills">Browse Skills</a>
+    <a href="#reviews">Reviews</a>
   </nav>
-
-  <div class="cta-group">
-    <button class="btn secondary">Sign In</button>
-    <button class="btn">Get Started</button>
-  </div>
 </header>
 
 <section class="hero">
-  <h1>Skill Swap Platform</h1>
-  <div class="tagline">Skill Swap – Free Skill Exchange Platform</div>
-  <div class="desc">A community where you can learn new skills by teaching what you know. No money involved—just knowledge, collaboration, and growth.</div>
+  <h1>Skill Swap – Free Skill Exchange</h1>
+  <p>Learn new skills by teaching what you know. No money involved.</p>
+  <button onclick="showSkills()">Browse Skills</button>
+  <button onclick="showSkills()">Find Your Match</button>
 </section>
 
-<section id="findmatch">
-  <h2>Find Match (Search Skills)</h2>
-  <input type="text" id="searchBox" placeholder="Search skills alphabetically..." onkeyup="filterSkills()">
-  <div id="skillsList"></div>
+<section id="skills" class="skills-section">
+  <h2>Skills Directory</h2>
+
+  <input type="text" id="search" placeholder="Search skills..." onkeyup="filterSkills()">
+
+  <div class="alphabet">
+    <span onclick="filterByLetter('all')">All</span>
+    <span onclick="filterByLetter('A')">A</span>
+    <span onclick="filterByLetter('B')">B</span>
+    <span onclick="filterByLetter('C')">C</span>
+    <span onclick="filterByLetter('D')">D</span>
+    <span onclick="filterByLetter('E')">E</span>
+    <span onclick="filterByLetter('F')">F</span>
+    <span onclick="filterByLetter('G')">G</span>
+    <span onclick="filterByLetter('M')">M</span>
+    <span onclick="filterByLetter('P')">P</span>
+    <span onclick="filterByLetter('V')">V</span>
+    <span onclick="filterByLetter('W')">W</span>
+  </div>
+
+  <div id="skillsList" class="grid"></div>
 </section>
 
-<section id="features">
-  <h2>Features</h2>
+<section id="reviews">
+  <h2>User Reviews</h2>
   <div class="grid">
-    <div class="card">User Profiles</div>
-    <div class="card">Skill Search System</div>
-    <div class="card">Matching Algorithm</div>
-    <div class="card">Chat System</div>
-    <div class="card">Scheduling</div>
-    <div class="card">Ratings</div>
-    <div class="card">Gamification</div>
+    <div class="card">Ayesha Khan (Lahore): Improved my English for free!</div>
+    <div class="card">Ali Raza (Karachi): Exchanged coding for marketing.</div>
+    <div class="card">Hassan Ahmed (Islamabad): Learned video editing.</div>
+    <div class="card">Fatima Noor (Rawalpindi): Perfect for students.</div>
+    <div class="card">Usman Tariq (Faisalabad): Amazing idea!</div>
+    <div class="card">Zainab Malik (Multan): Feels like a community.</div>
+    <div class="card">Bilal Sheikh (Peshawar): Highly recommended!</div>
   </div>
 </section>
 
-<section id="testimonials">
-  <h2>Testimonials</h2>
-  <div class="grid">
-    <div class="card">Ayesha Khan (Lahore): "Skill Swap helped me improve English..."</div>
-    <div class="card">Ali Raza (Karachi): "I exchanged coding for marketing..."</div>
-    <div class="card">Hassan Ahmed (Islamabad): "Learned video editing for free..."</div>
-    <div class="card">Fatima Noor (Rawalpindi): "Great for students..."</div>
-    <div class="card">Usman Tariq (Faisalabad): "Amazing idea..."</div>
-    <div class="card">Zainab Malik (Multan): "Feels like a community..."</div>
-    <div class="card">Bilal Sheikh (Peshawar): "Highly recommended..."</div>
-  </div>
-</section>
+<footer>
+  <p>© 2026 Skill Swap</p>
+</footer>
 
-<footer>© 2026 Skill Swap</footer>
-
+<script src="script.js"></script>
 
 </body>
 </html>
