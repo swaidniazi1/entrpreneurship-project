@@ -1,0 +1,19 @@
+<svg width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad">
+      <stop offset="0%" stop-color="blue"/>
+      <stop offset="100%" stop-color="#d63384"/>
+    </linearGradient>
+
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="purple"/>
+    </marker>
+  </defs>
+
+  <path d="M70 10 C20 10, 20 50, 70 50 C120 50, 120 90, 30 90"
+        stroke="url(#grad)"
+        stroke-width="8"
+        fill="none"
+        marker-start="url(#arrow)"
+        marker-end="url(#arrow)" />
+</svg>
