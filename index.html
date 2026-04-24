@@ -1,76 +1,350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skill Swap</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Skill Swap Platform</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+   <!-- Firebase Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore-compat.js"></script>
+    <script>
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDS8tGustKzem7u8U5ntcLMimgLJC_fQWI",
+      authDomain: "skillswap-21922.firebaseapp.com",
+      projectId: "skillswap-21922",
+      storageBucket: "skillswap-21922.firebasestorage.app",
+      messagingSenderId: "942449711732",
+      appId: "1:942449711732:web:ed1ac7c996deb34b998f21",
+      measurementId: "G-DL61KXD2YR"
+    };
+
+    // Initialize Firebase
+    document.addEventListener('DOMContentLoaded', function() {
+      try {
+        if (typeof firebase !== 'undefined') {
+          firebase.initializeApp(firebaseConfig);
+          console.log("Firebase initialized in index.html");
+        }
+      } catch (error) {
+        console.error("Firebase initialization error:", error);
+      }
+    });
+  </script>
 </head>
-
 <body>
-
-<header>
-  <div class="logo">
-    <img src="assets/logo.svg" alt="logo">
-    <span>Skill Swap</span>
-  </div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#skills">Browse Skills</a>
-    <a href="#reviews">Reviews</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <h1>Skill Swap – Free Skill Exchange</h1>
-  <p>Learn new skills by teaching what you know. No money involved.</p>
-  <button onclick="showSkills()">Browse Skills</button>
-  <button onclick="showSkills()">Find Your Match</button>
-</section>
-
-<section id="skills" class="skills-section">
-  <h2>Skills Directory</h2>
-
-  <input type="text" id="search" placeholder="Search skills..." onkeyup="filterSkills()">
-
-  <div class="alphabet">
-    <span onclick="filterByLetter('all')">All</span>
-    <span onclick="filterByLetter('A')">A</span>
-    <span onclick="filterByLetter('B')">B</span>
-    <span onclick="filterByLetter('C')">C</span>
-    <span onclick="filterByLetter('D')">D</span>
-    <span onclick="filterByLetter('E')">E</span>
-    <span onclick="filterByLetter('F')">F</span>
-    <span onclick="filterByLetter('G')">G</span>
-    <span onclick="filterByLetter('M')">M</span>
-    <span onclick="filterByLetter('P')">P</span>
-    <span onclick="filterByLetter('V')">V</span>
-    <span onclick="filterByLetter('W')">W</span>
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen">
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Loading SkillSwap...</p>
+    </div>
   </div>
 
-  <div id="skillsList" class="grid"></div>
-</section>
+  <!-- Header Navigation -->
+  <header class="navbar">
+    <div class="container">
+      <div class="nav-brand">
+        <div class="logo-icon">
+          <i class="fas fa-exchange-alt"></i>
+        </div>
+        <h1 class="logo">SkillSwap</h1>
+      </div>
+      
+      <nav class="nav-links">
+        <a href="{{ url_for('main.app') }}" class="nav-link active">
+          <i class="fas fa-home"></i>
+          <span>Home</span>
+        </a>
+        <!-- new message  -->
+         <a href="{{ url_for('main.messages') }}" class="nav-link">
+            <i class="fas fa-comments"></i>
+            <span>Messages</span>
+        </a>
 
-<section id="reviews">
-  <h2>User Reviews</h2>
-  <div class="grid">
-    <div class="card">Ayesha Khan (Lahore): Improved my English for free!</div>
-    <div class="card">Ali Raza (Karachi): Exchanged coding for marketing.</div>
-    <div class="card">Hassan Ahmed (Islamabad): Learned video editing.</div>
-    <div class="card">Fatima Noor (Rawalpindi): Perfect for students.</div>
-    <div class="card">Usman Tariq (Faisalabad): Amazing idea!</div>
-    <div class="card">Zainab Malik (Multan): Feels like a community.</div>
-    <div class="card">Bilal Sheikh (Peshawar): Highly recommended!</div>
+        <!-- end  -->
+        <a href="{{ url_for('main.see_request') }}" class="nav-link">
+          <i class="fas fa-handshake"></i>
+          <span>Swap Requests</span>
+        </a>
+        <a href="{{ url_for('main.profile') }}" class="nav-link">
+          <i class="fas fa-user"></i>
+          <span>Profile</span>
+        </a>
+        <a href="{{ url_for('main.logout') }}" class="nav-link login-btn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn" id="mobileMenuBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-content">
+      <a href="{{ url_for('main.app') }}" class="mobile-nav-link">
+        <i class="fas fa-home"></i>
+        <span>Home</span>
+      </a>
+
+      <!-- new message section  -->
+       <a href="{{ url_for('main.messages') }}" class="mobile-nav-link">
+          <i class="fas fa-comments"></i>
+          <span>Messages</span>
+      </a>
+
+      <!-- end  -->
+      <a href="{{ url_for('main.see_request') }}" class="mobile-nav-link">
+        <i class="fas fa-handshake"></i>
+        <span>Swap Requests</span>
+      </a>
+      <a href="{{ url_for('main.profile') }}" class="mobile-nav-link">
+        <i class="fas fa-user"></i>
+        <span>Profile</span>
+      </a>
+      <a href="{{ url_for('main.logout') }}" class="mobile-nav-link">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </div>
   </div>
-</section>
 
-<footer>
-  <p>© 2026 Skill Swap</p>
-</footer>
+  <main class="container">
+   
+    
 
-<script src="script.js"></script>
+    <!-- Search & Filter -->
+    <section class="search-section">
+      <div class="search-container">
+        <form method="GET" action="{{ url_for('main.app') }}" class="search-form" id="searchForm">
+          <div class="search-input-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" 
+                   name="q" 
+                   id="searchInput"
+                   placeholder="Search by name or offering skill..." 
+                   value="{{ request.args.get('q', '') }}" 
+                   class="search-input"
+                   autocomplete="off">
+            <button type="button" class="search-clear" id="searchClear">
+              <i class="fas fa-times"></i>
+            </button>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+          </div>
+          <button type="submit" class="search-btn">
+            <span>Search</span>
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+        
+        <div class="search-tips">
+          <span class="tip-icon"><i class="fas fa-lightbulb"></i></span>
+          <span>Search by: User Name or Skill they're offering (e.g., "Flutter", "JavaScript")</span>
+        </div>
+      </div>
+    </section>
 
+    <!-- Search Results Info -->
+    {% if query %}
+    <div class="search-results-info">
+      <p>
+        <span class="results-count">{{ search_results_count }}</span> result(s) found for "<span class="search-query">{{ query }}</span>"
+        {% if search_results_count == 0 %}
+        <br><small>Try searching by user name or skill they offer (e.g., "Flutter", "JavaScript")</small>
+        {% endif %}
+      </p>
+    </div>
+    {% endif %}
+
+   
+
+    <!-- Main User Grid -->
+    <section class="user-grid-section">
+      {% if query == '' and not ai_recommendations %}
+      <div class="section-header">
+        <h2>Available Skill Swaps</h2>
+        <p>Browse through our community members</p>
+      </div>
+      {% endif %}
+      
+      <div class="user-grid" id="userGrid">
+        {% for swap in swaps %}
+        <div class="user-card" data-user-id="{{ swap.user_id }}">
+          <div class="card-header">
+            <div class="user-avatar">
+              <img src="{{ swap.photo_url }}" alt="{{ swap.name }}" class="profile-img" onerror="this.src='https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=150&h=150&fit=crop&crop=face'">
+              <div class="online-indicator"></div>
+            </div>
+            
+            <div class="user-meta">
+              <h3 class="user-name">{{ swap.name }}</h3>
+              <div class="user-location">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>{{ swap.display_location if swap.display_location else "Location not specified" }}</span>
+              </div>
+            </div>
+            
+            <div class="rating-badge">
+              <i class="fas fa-star"></i>
+              <span>{{ swap.rating }}/5</span>
+            </div>
+          </div>
+
+          <div class="skills-section">
+            <div class="skill-category">
+              <div class="category-header">
+                <i class="fas fa-share skill-icon offered"></i>
+                <h4>Offering</h4>
+              </div>
+              <div class="skill-tags">
+                {% for skill in swap.offeredSkill %}
+                <span class="skill-tag offered">{{ skill }}</span>
+                {% endfor %}
+              </div>
+            </div>
+            
+            <div class="skill-category">
+              <div class="category-header">
+                <i class="fas fa-hand-holding-heart skill-icon wanted"></i>
+                <h4>Seeking</h4>
+              </div>
+              <div class="skill-tags">
+                {% for skill in swap.requestedSkill %}
+                <span class="skill-tag wanted">{{ skill }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            <a href="{{ url_for('main.request_swap', target_user_id=swap.user_id) }}" class="request-btn">
+              <i class="fas fa-handshake"></i>
+              <span>Request Swap</span>
+            </a>
+            <button class="bookmark-btn" data-user-id="{{ swap.user_id }}">
+              <i class="far fa-bookmark"></i>
+            </button>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- Empty State -->
+    {% if swaps|length == 0 and query %}
+    <div class="empty-state" id="emptyState">
+      <div class="empty-icon">
+        <i class="fas fa-search"></i>
+      </div>
+      <h3>No results found for "{{ query }}"</h3>
+      <p>Try searching by user name or skill they offer (e.g., "Flutter", "JavaScript")</p>
+      <a href="{{ url_for('main.app') }}" class="clear-filters-btn">
+        <i class="fas fa-times"></i>
+        Clear Search
+      </a>
+    </div>
+    {% endif %}
+
+    <!-- Pagination -->
+    {% if total_pages > 1 %}
+    <div class="pagination-container">
+      <div class="pagination">
+        {% if current_page > 1 %}
+          <a href="{{ url_for('main.app', page=current_page-1, q=query) }}" class="pagination-btn prev">
+            <i class="fas fa-chevron-left"></i>
+            <span>Previous</span>
+          </a>
+        {% endif %}
+
+        <div class="pagination-info">
+          Page {{ current_page }} of {{ total_pages }}
+        </div>
+
+        {% if current_page < total_pages %}
+          <a href="{{ url_for('main.app', page=current_page+1, q=query) }}" class="pagination-btn next">
+            <span>Next</span>
+            <i class="fas fa-chevron-right"></i>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    {% endif %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="logo-icon">
+            <i class="fas fa-exchange-alt"></i>
+          </div>
+          <h3>SkillSwap</h3>
+          <p>Connecting talents, building communities</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-column">
+            <h4>Platform</h4>
+            <a href="#">How it works</a>
+            <a href="#">Success Stories</a>
+            <a href="#">Community Guidelines</a>
+          </div>
+          <div class="footer-column">
+            <h4>Support</h4>
+            <a href="#">Help Center</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Safety Tips</a>
+          </div>
+          <div class="footer-column">
+            <h4>Company</h4>
+            <a href="#">About Us</a>
+            <a href="#">Careers</a>
+            <a href="#">Blog</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 SkillSwap. All rights reserved. Developed by Nikhil Shimpy & Team</p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/nikhilshimpy/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/NikhilShimpy" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.instagram.com/nikhilshimpyy/?hl=en" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://linktr.ee/nikhilshimpyy" target="_blank" title="LinkTree"><i class="fas fa-link"></i></a>
+          <a href="https://nikhilshimpyyportfolio.vercel.app/" target="_blank" title="Portfolio"><i class="fas fa-globe"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTop">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+  <script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://app.dograh.com/embed/dograh-widget.js?token=emb_1bg8_EAZinlhDHSY171k9ZY48d2_Qm_BjMcH2q5-F94&environment=production&apiEndpoint=api.dograh.com';
+    js.async = true;
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'dograh-widget'));
+</script>
 </body>
 </html>
