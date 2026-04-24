@@ -21,7 +21,6 @@
       overflow-x:hidden;
     }
 
-    /* HEADER */
     header{
       position:sticky;
       top:0;
@@ -43,39 +42,15 @@
       font-size:18px;
     }
 
-    .logo img{
-      width:38px;
-      transition:0.3s;
-    }
-
-    .logo img:hover{
-      transform:rotate(10deg) scale(1.05);
-    }
+    .logo img{width:38px;}
 
     nav a{
       margin:0 10px;
       text-decoration:none;
       color:#333;
       font-weight:500;
-      position:relative;
     }
 
-    nav a::after{
-      content:'';
-      position:absolute;
-      left:0;
-      bottom:-4px;
-      width:0;
-      height:2px;
-      background:#4a6cf7;
-      transition:0.3s;
-    }
-
-    nav a:hover::after{
-      width:100%;
-    }
-
-    /* CTA GROUP (NEW PREMIUM HEADER STYLE) */
     .cta-group{
       display:flex;
       align-items:center;
@@ -86,7 +61,6 @@
       border:1px solid rgba(0,0,0,0.06);
     }
 
-    /* BUTTONS */
     .btn{
       padding:10px 16px;
       border:none;
@@ -95,61 +69,43 @@
       background:linear-gradient(135deg,#4a6cf7,#7b5cff);
       color:white;
       font-weight:500;
-      transition:0.25s;
-      box-shadow:0 8px 20px rgba(74,108,247,0.25);
-      font-size:14px;
-      white-space:nowrap;
-    }
-
-    .btn:hover{
-      transform:translateY(-2px);
-      box-shadow:0 12px 25px rgba(74,108,247,0.35);
     }
 
     .btn.secondary{
       background:transparent;
       color:#333;
-      box-shadow:none;
       border:1px solid rgba(0,0,0,0.1);
     }
 
-    .btn.secondary:hover{
-      background:#fff;
-    }
-
-    /* HERO */
     .hero{
       text-align:center;
-      padding:80px 20px 60px;
+      padding:80px 20px 40px;
     }
 
     .hero h1{
       font-size:46px;
-      font-weight:700;
-      margin-bottom:10px;
       background:linear-gradient(135deg,#4a6cf7,#d63384);
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
     }
 
-    .hero p{
-      color:#555;
-      margin-bottom:25px;
-      font-size:16px;
-    }
-
-    section{
-      padding:70px 20px;
-      max-width:1100px;
-      margin:auto;
-    }
-
-    h2{
-      text-align:center;
-      margin-bottom:35px;
-      font-size:28px;
+    .tagline{
+      font-size:20px;
       font-weight:600;
+      margin-top:10px;
     }
+
+    .desc{
+      color:#555;
+      margin-top:10px;
+      max-width:700px;
+      margin-left:auto;
+      margin-right:auto;
+    }
+
+    section{padding:70px 20px;max-width:1100px;margin:auto;}
+
+    h2{text-align:center;margin-bottom:30px;}
 
     .grid{
       display:grid;
@@ -159,17 +115,9 @@
 
     .card{
       background:rgba(255,255,255,0.85);
-      backdrop-filter:blur(10px);
       padding:20px;
       border-radius:16px;
       box-shadow:0 10px 25px rgba(0,0,0,0.06);
-      transition:0.25s;
-      border:1px solid rgba(0,0,0,0.05);
-    }
-
-    .card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 18px 35px rgba(0,0,0,0.12);
     }
 
     .profile-badge{
@@ -179,47 +127,6 @@
       border-radius:20px;
       font-size:12px;
       background:linear-gradient(135deg,#e3ecff,#f3e3ff);
-      font-weight:500;
-    }
-
-    input{
-      padding:12px;
-      width:100%;
-      border-radius:10px;
-      border:1px solid rgba(0,0,0,0.1);
-      margin-bottom:12px;
-      outline:none;
-    }
-
-    input:focus{
-      border-color:#4a6cf7;
-      box-shadow:0 0 0 3px rgba(74,108,247,0.15);
-    }
-
-    .match-box{
-      background:rgba(255,255,255,0.85);
-      padding:25px;
-      border-radius:16px;
-      text-align:center;
-      box-shadow:0 10px 25px rgba(0,0,0,0.06);
-    }
-
-    .modal{
-      display:none;
-      position:fixed;
-      top:0;left:0;
-      width:100%;height:100%;
-      background:rgba(0,0,0,0.55);
-      justify-content:center;
-      align-items:center;
-      backdrop-filter:blur(5px);
-    }
-
-    .modal-content{
-      background:white;
-      padding:25px;
-      border-radius:16px;
-      width:320px;
     }
 
     footer{
@@ -229,12 +136,6 @@
       color:white;
       margin-top:40px;
     }
-
-    @media(max-width:768px){
-      .hero h1{font-size:32px;}
-      nav{display:none;}
-    }
-
   </style>
 </head>
 
@@ -249,95 +150,62 @@
   <nav>
     <a href="#features">Features</a>
     <a href="#profiles">Profiles</a>
-    <a href="#match">Match</a>
+    <a href="#testimonials">Testimonials</a>
   </nav>
 
   <div class="cta-group">
     <button class="btn secondary" onclick="openModal()">Sign In</button>
-    <button class="btn" onclick="openModal()">Get Started</button>
+    <button class="btn">Get Started</button>
   </div>
 </header>
 
 <section class="hero">
-  <h1>Exchange Skills Without Money</h1>
-  <p>Learn, teach, and grow with real people around you.</p>
-  <button class="btn" onclick="scrollToSection('profiles')">Explore Profiles</button>
-  <button class="btn" onclick="scrollToSection('match')">Find Match</button>
+  <h1>Skill Swap Platform</h1>
+
+  <div class="tagline">Skill Swap – Free Skill Exchange Platform</div>
+  <div class="desc">
+    A community where you can learn new skills by teaching what you know. No money involved—just knowledge, collaboration, and growth.
+  </div>
 </section>
 
 <section id="features">
   <h2>Platform Features</h2>
   <div class="grid">
-    <div class="card">👤 User Profiles with skills offered & needed</div>
-    <div class="card">🔍 Smart Skill Search System</div>
-    <div class="card">🤝 Matching based on skills</div>
-    <div class="card">💬 Chat & Messaging system</div>
-    <div class="card">📅 Session Scheduling</div>
-    <div class="card">⭐ Ratings & Feedback</div>
-    <div class="card">🏆 Points & Badges Gamification</div>
+    <div class="card">User Profiles with skills offered & needed</div>
+    <div class="card">Smart Skill Search System</div>
+    <div class="card">Matching based on skills</div>
+    <div class="card">Chat & Messaging system</div>
+    <div class="card">Session Scheduling</div>
+    <div class="card">Ratings & Feedback</div>
+    <div class="card">Points & Badges Gamification</div>
   </div>
 </section>
 
 <section id="profiles">
   <h2>Top Users</h2>
   <div class="grid">
-    <div class="card">
-      <b>Ayesha Khan</b>
-      <p>Teaches English</p>
-      <p>Wants Graphic Design</p>
-      <span class="profile-badge">⭐ 4.8</span>
-    </div>
+    <div class="card"><b>Ayesha Khan</b><p>Teaches English</p><p>Wants Graphic Design</p><span class="profile-badge">⭐ 4.8</span></div>
+    <div class="card"><b>Ali Raza</b><p>Teaches Coding</p><p>Wants Marketing</p><span class="profile-badge">⭐ 4.7</span></div>
+    <div class="card"><b>Hassan Ahmed</b><p>Teaches Photography</p><p>Wants Video Editing</p><span class="profile-badge">⭐ 4.9</span></div>
   </div>
 </section>
 
-<section id="match">
-  <h2>Find Your Match</h2>
-  <div class="match-box">
-    <input id="userSkill" placeholder="I can teach...">
-    <input id="wantSkill" placeholder="I want to learn...">
-    <button class="btn" onclick="findMatch()">Find Match</button>
-    <p id="matchResult"></p>
+<section id="testimonials">
+  <h2>Testimonials</h2>
+  <div class="grid">
+    <div class="card">Ayesha Khan (Lahore): "Skill Swap helped me improve my spoken English by teaching basic graphic design in return. It’s amazing to learn without paying!"</div>
+    <div class="card">Ali Raza (Karachi): "I exchanged coding lessons for digital marketing skills. This platform really connects people in a meaningful way."</div>
+    <div class="card">Hassan Ahmed (Islamabad): "I always wanted to learn video editing. Through Skill Swap, I taught photography and learned editing for free."</div>
+    <div class="card">Fatima Noor (Rawalpindi): "As a student, I couldn’t afford courses. Skill Swap gave me access to learning through real people."</div>
+    <div class="card">Usman Tariq (Faisalabad): "The idea of skill exchange is brilliant. I improved my freelancing skills while helping others."</div>
+    <div class="card">Zainab Malik (Multan): "I love how easy it is to find people willing to teach and learn. It feels like a community."</div>
+    <div class="card">Bilal Sheikh (Peshawar): "I gained confidence by teaching and learning at the same time. Highly recommended platform!"</div>
   </div>
 </section>
 
 <footer>
   © 2026 Skill Swap Platform
 </footer>
-
-<div class="modal" id="modal">
-  <div class="modal-content">
-    <h3>Join Skill Swap</h3>
-    <input placeholder="Name">
-    <input placeholder="Email">
-    <button class="btn" onclick="closeModal()">Sign Up</button>
-  </div>
-</div>
-
-<script>
-function scrollToSection(id){
-  document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-
-function openModal(){
-  document.getElementById('modal').style.display='flex';
-}
-
-function closeModal(){
-  document.getElementById('modal').style.display='none';
-}
-
-function findMatch(){
-  const teach=document.getElementById('userSkill').value;
-  const learn=document.getElementById('wantSkill').value;
-
-  if(!teach||!learn){
-    document.getElementById('matchResult').innerText="Please enter skills first";
-    return;
-  }
-
-  document.getElementById('matchResult').innerText="Smart match found (demo)!";
-}
-</script>
 
 </body>
 </html>
