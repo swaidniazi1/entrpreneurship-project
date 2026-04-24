@@ -1,84 +1,348 @@
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #e0f7ff, #fce4ff);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skill Swap</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:linear-gradient(135deg,#e9f2ff 0%, #f7e9ff 50%, #e9fff3 100%);
+      color:#1f1f1f;
+      overflow-x:hidden;
+    }
+
+    /* HEADER */
+    header{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:14px 28px;
+      background:rgba(255,255,255,0.75);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(0,0,0,0.06);
+    }
+
+    .logo{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:700;
+      font-size:18px;
+    }
+
+    .logo img{
+      width:38px;
+      transition:0.3s;
+    }
+
+    .logo img:hover{
+      transform:rotate(10deg) scale(1.05);
+    }
+
+    nav a{
+      margin:0 10px;
+      text-decoration:none;
+      color:#333;
+      font-weight:500;
+      position:relative;
+    }
+
+    nav a::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-4px;
+      width:0;
+      height:2px;
+      background:#4a6cf7;
+      transition:0.3s;
+    }
+
+    nav a:hover::after{
+      width:100%;
+    }
+
+    /* BUTTONS */
+    .btn{
+      padding:12px 18px;
+      border:none;
+      border-radius:12px;
+      cursor:pointer;
+      margin:5px;
+      background:linear-gradient(135deg,#4a6cf7,#7b5cff);
+      color:white;
+      font-weight:500;
+      transition:0.25s;
+      box-shadow:0 8px 20px rgba(74,108,247,0.25);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 25px rgba(74,108,247,0.35);
+    }
+
+    /* HERO */
+    .hero{
+      text-align:center;
+      padding:80px 20px 60px;
+    }
+
+    .hero h1{
+      font-size:46px;
+      font-weight:700;
+      margin-bottom:10px;
+      background:linear-gradient(135deg,#4a6cf7,#d63384);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+
+    .hero p{
+      color:#555;
+      margin-bottom:25px;
+      font-size:16px;
+    }
+
+    /* SECTIONS */
+    section{
+      padding:70px 20px;
+      max-width:1100px;
+      margin:auto;
+    }
+
+    h2{
+      text-align:center;
+      margin-bottom:35px;
+      font-size:28px;
+      font-weight:600;
+    }
+
+    /* GRID */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:20px;
+    }
+
+    /* CARDS */
+    .card{
+      background:rgba(255,255,255,0.85);
+      backdrop-filter:blur(10px);
+      padding:20px;
+      border-radius:16px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.06);
+      transition:0.25s;
+      border:1px solid rgba(0,0,0,0.05);
+    }
+
+    .card:hover{
+      transform:translateY(-6px);
+      box-shadow:0 18px 35px rgba(0,0,0,0.12);
+    }
+
+    /* BADGE */
+    .profile-badge{
+      display:inline-block;
+      margin-top:10px;
+      padding:5px 12px;
+      border-radius:20px;
+      font-size:12px;
+      background:linear-gradient(135deg,#e3ecff,#f3e3ff);
+      font-weight:500;
+    }
+
+    /* INPUTS */
+    input{
+      padding:12px;
+      width:100%;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.1);
+      margin-bottom:12px;
+      outline:none;
+      transition:0.2s;
+    }
+
+    input:focus{
+      border-color:#4a6cf7;
+      box-shadow:0 0 0 3px rgba(74,108,247,0.15);
+    }
+
+    /* MATCH BOX */
+    .match-box{
+      background:rgba(255,255,255,0.85);
+      padding:25px;
+      border-radius:16px;
+      text-align:center;
+      box-shadow:0 10px 25px rgba(0,0,0,0.06);
+    }
+
+    /* MODAL */
+    .modal{
+      display:none;
+      position:fixed;
+      top:0;left:0;
+      width:100%;height:100%;
+      background:rgba(0,0,0,0.55);
+      justify-content:center;
+      align-items:center;
+      backdrop-filter:blur(5px);
+    }
+
+    .modal-content{
+      background:white;
+      padding:25px;
+      border-radius:16px;
+      width:320px;
+      animation:pop 0.25s ease;
+    }
+
+    @keyframes pop{
+      from{transform:scale(0.8);opacity:0;}
+      to{transform:scale(1);opacity:1;}
+    }
+
+    /* FOOTER */
+    footer{
+      text-align:center;
+      padding:25px;
+      background:#111;
+      color:white;
+      margin-top:40px;
+    }
+
+    /* MOBILE */
+    @media(max-width:768px){
+      .hero h1{font-size:32px;}
+      nav{display:none;}
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="assets/logo.svg">
+    Skill Swap
+  </div>
+
+  <nav>
+    <a href="#features">Features</a>
+    <a href="#profiles">Profiles</a>
+    <a href="#match">Match</a>
+  </nav>
+
+  <button class="btn" onclick="openModal()">Join</button>
+</header>
+
+<section class="hero">
+  <h1>Exchange Skills Without Money</h1>
+  <p>Learn, teach, and grow with real people around you.</p>
+  <button class="btn" onclick="scrollToSection('profiles')">Explore Profiles</button>
+  <button class="btn" onclick="scrollToSection('match')">Find Match</button>
+</section>
+
+<section id="features">
+  <h2>Platform Features</h2>
+  <div class="grid">
+    <div class="card">👤 User Profiles with skills offered & needed</div>
+    <div class="card">🔍 Smart Skill Search System</div>
+    <div class="card">🤝 Matching based on skills</div>
+    <div class="card">💬 Chat & Messaging system</div>
+    <div class="card">📅 Session Scheduling</div>
+    <div class="card">⭐ Ratings & Feedback</div>
+    <div class="card">🏆 Points & Badges Gamification</div>
+  </div>
+</section>
+
+<section id="profiles">
+  <h2>Top Users</h2>
+  <div class="grid">
+    <div class="card">
+      <b>Ayesha Khan</b>
+      <p>Teaches English</p>
+      <p>Wants Graphic Design</p>
+      <span class="profile-badge">⭐ 4.8</span>
+    </div>
+
+    <div class="card">
+      <b>Ali Raza</b>
+      <p>Teaches Coding</p>
+      <p>Wants Marketing</p>
+      <span class="profile-badge">⭐ 4.7</span>
+    </div>
+
+    <div class="card">
+      <b>Hassan Ahmed</b>
+      <p>Teaches Photography</p>
+      <p>Wants Video Editing</p>
+      <span class="profile-badge">⭐ 4.9</span>
+    </div>
+  </div>
+</section>
+
+<section id="match">
+  <h2>Find Your Match</h2>
+  <div class="match-box">
+    <input id="userSkill" placeholder="I can teach...">
+    <input id="wantSkill" placeholder="I want to learn...">
+    <button class="btn" onclick="findMatch()">Find Match</button>
+    <p id="matchResult"></p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Skill Swap Platform
+</footer>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <h3>Join Skill Swap</h3>
+    <input placeholder="Name">
+    <input placeholder="Email">
+    <button class="btn" onclick="closeModal()">Sign Up</button>
+  </div>
+</div>
+
+<script>
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  padding: 15px 30px;
-  background: white;
+function openModal(){
+  document.getElementById('modal').style.display='flex';
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-weight: bold;
+function closeModal(){
+  document.getElementById('modal').style.display='none';
 }
 
-.logo img {
-  width: 40px;
-}
+function findMatch(){
+  const teach = document.getElementById('userSkill').value;
+  const learn = document.getElementById('wantSkill').value;
 
-nav a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: #333;
-}
+  if(!teach || !learn){
+    document.getElementById('matchResult').innerText="Please enter skills first";
+    return;
+  }
 
-.hero {
-  text-align: center;
-  padding: 60px 20px;
+  document.getElementById('matchResult').innerText=
+  "We found matching users (demo result)!";
 }
+</script>
 
-.hero h1 {
-  font-size: 36px;
-}
-
-button {
-  margin: 10px;
-  padding: 12px 20px;
-  border: none;
-  background: #007bff;
-  color: white;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.skills-section {
-  display: none;
-  padding: 40px;
-}
-
-#search {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-}
-
-.alphabet span {
-  margin: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-  gap: 20px;
-}
-
-.card {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #222;
-  color: white;
-}
+</body>
+</html>
