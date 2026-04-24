@@ -75,23 +75,46 @@
       width:100%;
     }
 
+    /* CTA GROUP (NEW PREMIUM HEADER STYLE) */
+    .cta-group{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      background:rgba(255,255,255,0.6);
+      padding:6px;
+      border-radius:40px;
+      border:1px solid rgba(0,0,0,0.06);
+    }
+
     /* BUTTONS */
     .btn{
-      padding:12px 18px;
+      padding:10px 16px;
       border:none;
-      border-radius:12px;
+      border-radius:999px;
       cursor:pointer;
-      margin:5px;
       background:linear-gradient(135deg,#4a6cf7,#7b5cff);
       color:white;
       font-weight:500;
       transition:0.25s;
       box-shadow:0 8px 20px rgba(74,108,247,0.25);
+      font-size:14px;
+      white-space:nowrap;
     }
 
     .btn:hover{
       transform:translateY(-2px);
       box-shadow:0 12px 25px rgba(74,108,247,0.35);
+    }
+
+    .btn.secondary{
+      background:transparent;
+      color:#333;
+      box-shadow:none;
+      border:1px solid rgba(0,0,0,0.1);
+    }
+
+    .btn.secondary:hover{
+      background:#fff;
     }
 
     /* HERO */
@@ -115,7 +138,6 @@
       font-size:16px;
     }
 
-    /* SECTIONS */
     section{
       padding:70px 20px;
       max-width:1100px;
@@ -129,14 +151,12 @@
       font-weight:600;
     }
 
-    /* GRID */
     .grid{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
       gap:20px;
     }
 
-    /* CARDS */
     .card{
       background:rgba(255,255,255,0.85);
       backdrop-filter:blur(10px);
@@ -152,7 +172,6 @@
       box-shadow:0 18px 35px rgba(0,0,0,0.12);
     }
 
-    /* BADGE */
     .profile-badge{
       display:inline-block;
       margin-top:10px;
@@ -163,7 +182,6 @@
       font-weight:500;
     }
 
-    /* INPUTS */
     input{
       padding:12px;
       width:100%;
@@ -171,7 +189,6 @@
       border:1px solid rgba(0,0,0,0.1);
       margin-bottom:12px;
       outline:none;
-      transition:0.2s;
     }
 
     input:focus{
@@ -179,7 +196,6 @@
       box-shadow:0 0 0 3px rgba(74,108,247,0.15);
     }
 
-    /* MATCH BOX */
     .match-box{
       background:rgba(255,255,255,0.85);
       padding:25px;
@@ -188,7 +204,6 @@
       box-shadow:0 10px 25px rgba(0,0,0,0.06);
     }
 
-    /* MODAL */
     .modal{
       display:none;
       position:fixed;
@@ -205,15 +220,8 @@
       padding:25px;
       border-radius:16px;
       width:320px;
-      animation:pop 0.25s ease;
     }
 
-    @keyframes pop{
-      from{transform:scale(0.8);opacity:0;}
-      to{transform:scale(1);opacity:1;}
-    }
-
-    /* FOOTER */
     footer{
       text-align:center;
       padding:25px;
@@ -222,11 +230,11 @@
       margin-top:40px;
     }
 
-    /* MOBILE */
     @media(max-width:768px){
       .hero h1{font-size:32px;}
       nav{display:none;}
     }
+
   </style>
 </head>
 
@@ -244,8 +252,10 @@
     <a href="#match">Match</a>
   </nav>
 
-  <button class="btn secondary" onclick="openSignIn()">Sign In</button>
-  <button class="btn" onclick="openModal()">Get Started</button>
+  <div class="cta-group">
+    <button class="btn secondary" onclick="openModal()">Sign In</button>
+    <button class="btn" onclick="openModal()">Get Started</button>
+  </div>
 </header>
 
 <section class="hero">
@@ -277,20 +287,6 @@
       <p>Wants Graphic Design</p>
       <span class="profile-badge">⭐ 4.8</span>
     </div>
-
-    <div class="card">
-      <b>Ali Raza</b>
-      <p>Teaches Coding</p>
-      <p>Wants Marketing</p>
-      <span class="profile-badge">⭐ 4.7</span>
-    </div>
-
-    <div class="card">
-      <b>Hassan Ahmed</b>
-      <p>Teaches Photography</p>
-      <p>Wants Video Editing</p>
-      <span class="profile-badge">⭐ 4.9</span>
-    </div>
   </div>
 </section>
 
@@ -308,7 +304,6 @@
   © 2026 Skill Swap Platform
 </footer>
 
-<!-- MODAL -->
 <div class="modal" id="modal">
   <div class="modal-content">
     <h3>Join Skill Swap</h3>
@@ -332,16 +327,15 @@ function closeModal(){
 }
 
 function findMatch(){
-  const teach = document.getElementById('userSkill').value;
-  const learn = document.getElementById('wantSkill').value;
+  const teach=document.getElementById('userSkill').value;
+  const learn=document.getElementById('wantSkill').value;
 
-  if(!teach || !learn){
+  if(!teach||!learn){
     document.getElementById('matchResult').innerText="Please enter skills first";
     return;
   }
 
-  document.getElementById('matchResult').innerText=
-  "We found matching users (demo result)!";
+  document.getElementById('matchResult').innerText="Smart match found (demo)!";
 }
 </script>
 
