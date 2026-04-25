@@ -38,12 +38,21 @@
       border-bottom: 1px solid rgba(0, 0, 0, 0.06);
     }
 
+    /* Logo styles */
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      font-size: 24px;
       font-weight: 700;
-      font-size: 18px;
+      cursor: default;
+    }
+
+    .letter {
+      font-size: 36px;
+      font-weight: 700;
+      background: linear-gradient(to bottom, #007BFF 50%, #D63384 50%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     nav a {
@@ -143,7 +152,9 @@
 <body>
 
 <header>
-  <div class="logo">Skill Swap</div>
+  <div class="logo">
+    <div class="letter">S</div>
+  </div>
   <nav>
     <a href="#home">Home</a>
     <a href="#features">Features</a>
