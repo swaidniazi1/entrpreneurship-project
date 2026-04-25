@@ -49,6 +49,22 @@
       background: linear-gradient(135deg, #6a11cb, #2575fc);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      font-family: 'Poppins', sans-serif;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      /* More aesthetic style for "S" */
+      background: linear-gradient(135deg, #ff7e5f, #feb47b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
     }
     .site-title {
       font-size: 22px;
@@ -365,6 +381,17 @@
       <span class="tag">4.8★</span>
       <p class="full">I learned advanced marketing strategies by teaching coding to beginners. The platform creates a valuable exchange where both parties benefit. The feedback and flexible scheduling made it easy to fit into my routine.</p>
     </div>
+    <!-- Adding two more reviews for at least 4 reviews -->
+    <div class="card review">
+      <b>Maria Ali (Lahore)</b>
+      <span class="tag">4.9★</span>
+      <p class="full">The community helped me master graphic design. I received valuable feedback and connected with talented artists worldwide. It's a fantastic platform for creatives to grow.</p>
+    </div>
+    <div class="card review">
+      <b>Omar Siddiq (Islamabad)</b>
+      <span class="tag">4.7★</span>
+      <p class="full">I improved my web development skills by mentoring beginners. The platform makes learning interactive and fun, with great support from fellow learners and mentors.</p>
+    </div>
   </div>
   <!-- Sign Up Call to Action -->
   <div style="text-align:center; margin-top:40px;">
@@ -376,6 +403,52 @@
 <footer>
   <p>© 2026 Skill Swap. All Rights Reserved | Connect & Grow.</p>
 </footer>
+
+<script>
+const headlines = [
+  "Connect & Grow with Skill Swap",
+  "Learn New Skills Today",
+  "Join Our Community",
+  "Explore, Share, Succeed",
+];
+
+let headlineIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+
+function type() {
+  const headlineElement = document.querySelector('.animated-headline');
+  const currentText = headlines[headlineIndex];
+  const displayedText = currentText.substring(0, charIndex);
+
+  if (headlineElement) {
+    headlineElement.textContent = displayedText;
+  }
+
+  if (!isDeleting && charIndex < currentText.length) {
+    // Typing forward
+    charIndex++;
+    setTimeout(type, 100);
+  } else if (isDeleting && charIndex > 0) {
+    // Deleting
+    charIndex--;
+    setTimeout(type, 50);
+  } else {
+    // Pause before next
+    if (!isDeleting) {
+      isDeleting = true;
+      setTimeout(type, 1500);
+    } else {
+      isDeleting = false;
+      headlineIndex = (headlineIndex + 1) % headlines.length;
+      setTimeout(type, 500);
+    }
+  }
+}
+
+// Start the headline animation
+type();
+</script>
 
 </body>
 </html>
