@@ -202,6 +202,7 @@
       cursor: pointer;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: background-color 0.3s, transform 0.3s;
+      text-decoration: none;
     }
 
     .btn:hover {
@@ -235,8 +236,8 @@
     <div class="site-title">Skill Swap</div>
   </div>
   <nav>
-    <!-- Replace Home button with Find Match -->
-    <a href="#skill directory" class="btn">Find Match</a>
+    <!-- Replace Home button with link to skills directory -->
+    <a href="skills_directory.html" class="btn">Find Match</a>
     <a href="#features">Features</a>
     <a href="#profiles">Profiles</a>
     <a href="#reviews">Reviews</a>
@@ -246,10 +247,11 @@
 <section id="home" class="hero">
   <h1>Skill Swap Platform</h1>
   <p>Exchange skills without money. Learn, teach, and grow together with our innovative platform designed to connect passionate learners and teachers worldwide.</p>
-  <button class="btn" onclick="window.location.href='#skills'">Find Your Match</button>
+  <!-- Link button to skills directory -->
+  <a href="skills_directory.html" class="btn">Find Your Match</a>
 </section>
 
-<!-- Assuming 'skills directory' page is linked with #skills -->
+<!-- Optional: Add a section for skills directory preview or info -->
 <section id="skills" style="padding: 100px 20px; background: #f9f9f9;">
   <h2 style="text-align:center; margin-bottom:30px;">Skills Directory</h2>
   <p style="max-width:800px; margin:auto; font-size:18px; line-height:1.6; text-align:center;">Explore the diverse skills available on our platform, from language learning to technical skills. Connect with users who match your interests and start your exchange today!</p>
