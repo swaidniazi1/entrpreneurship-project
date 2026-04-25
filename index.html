@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Skill Swap</title>
   
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" />
   
   <style>
     * {
@@ -146,7 +146,7 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      min-height: 90px;
+      min-height: 100px;
     }
 
     .review p.full {
@@ -164,7 +164,7 @@
     }
 
     .review:hover p.full {
-      max-height: 200px;
+      max-height: 300px;
       opacity: 1;
     }
 
@@ -186,6 +186,27 @@
       padding: 40px 20px;
       margin-top: 60px;
       font-size: 14px;
+    }
+
+    /* Button styles */
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      background-color: #007BFF;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
     }
 
     /* Animations */
@@ -214,7 +235,8 @@
     <div class="site-title">Skill Swap</div>
   </div>
   <nav>
-    <a href="#home">Home</a>
+    <!-- Replace Home button with Find Match -->
+    <a href="#skills" class="btn">Find Match</a>
     <a href="#features">Features</a>
     <a href="#profiles">Profiles</a>
     <a href="#reviews">Reviews</a>
@@ -223,7 +245,14 @@
 
 <section id="home" class="hero">
   <h1>Skill Swap Platform</h1>
-  <p>Exchange skills without money. Learn, teach, grow.</p>
+  <p>Exchange skills without money. Learn, teach, and grow together with our innovative platform designed to connect passionate learners and teachers worldwide.</p>
+  <button class="btn" onclick="window.location.href='#skills'">Find Your Match</button>
+</section>
+
+<!-- Assuming 'skills directory' page is linked with #skills -->
+<section id="skills" style="padding: 100px 20px; background: #f9f9f9;">
+  <h2 style="text-align:center; margin-bottom:30px;">Skills Directory</h2>
+  <p style="max-width:800px; margin:auto; font-size:18px; line-height:1.6; text-align:center;">Explore the diverse skills available on our platform, from language learning to technical skills. Connect with users who match your interests and start your exchange today!</p>
 </section>
 
 <section id="features">
@@ -257,37 +286,37 @@
     <div class="card review">
       <b>Ayesha Khan (Lahore)</b>
       <span class="tag">5★</span>
-      <p class="full">Skill Swap helped me improve my English speaking skills. I exchanged my graphic design knowledge and got amazing learning experience without spending money.</p>
+      <p class="full">Skill Swap helped me improve my English speaking skills significantly. I exchanged my graphic design knowledge with native speakers and gained confidence in real conversations. The platform's community is very supportive and vibrant, making learning fun and effective. Highly recommended for anyone looking to enhance their language skills without traditional classroom settings.</p>
     </div>
     <div class="card review">
       <b>Ali Raza (Karachi)</b>
       <span class="tag">4.8★</span>
-      <p class="full">I learned advanced marketing strategies by teaching coding. This platform creates real value exchange between users.</p>
+      <p class="full">I learned advanced marketing strategies by teaching coding to beginners. The platform creates a valuable exchange where both parties benefit. The detailed feedback and flexible scheduling made it easy to fit into my busy routine. It’s a perfect way to learn new skills while helping others grow.</p>
     </div>
     <div class="card review">
       <b>Hassan Ahmed (Islamabad)</b>
       <span class="tag">4.9★</span>
-      <p class="full">As a photographer, I taught photography basics and learned video editing in return. Very practical platform.</p>
+      <p class="full">As a photographer, I taught photography basics and learned video editing in return. The platform's interface is user-friendly, and the community is very active. I improved my skills faster than I expected, and I enjoyed sharing my passion with others. It's a very practical and innovative platform for skill exchange.</p>
     </div>
     <div class="card review">
       <b>Fatima Noor (Rawalpindi)</b>
       <span class="tag">5★</span>
-      <p class="full">This platform is perfect for students like me who cannot afford expensive courses. Pure knowledge exchange.</p>
+      <p class="full">This platform is perfect for students like me who cannot afford expensive courses. I was able to learn programming and graphic design from experienced users without any cost. The real-world projects and peer feedback helped me improve quickly. It’s a community that truly values knowledge sharing and mutual growth.</p>
     </div>
     <div class="card review">
       <b>Usman Tariq (Faisalabad)</b>
       <span class="tag">4.7★</span>
-      <p class="full">The idea is brilliant. I improved my freelancing skills while helping others learn mine.</p>
+      <p class="full">The idea is brilliant. I improved my freelancing skills while helping others learn mine. The platform’s matching system connects you with the right people, and the chat feature makes communication smooth and effective. It’s a wonderful way to build skills and network locally and globally.</p>
     </div>
     <div class="card review">
       <b>Zainab Malik (Multan)</b>
       <span class="tag">4.8★</span>
-      <p class="full">Feels like a real community where everyone helps each other grow through skills.</p>
+      <p class="full">Feels like a real community where everyone helps each other grow through skills. I’ve learned so much about digital marketing and content creation by exchanging with experts. The platform is very engaging and inspiring for continuous learning.</p>
     </div>
     <div class="card review">
       <b>Bilal Sheikh (Peshawar)</b>
       <span class="tag">5★</span>
-      <p class="full">Highly recommended platform for anyone who wants to learn new skills without money barrier.</p>
+      <p class="full">Highly recommended platform for anyone who wants to learn new skills without the money barrier. The variety of skills available is impressive, and the community is very supportive. I’ve gained valuable skills that helped me land freelance projects and grow my career.</p>
     </div>
   </div>
 </section>
