@@ -59,9 +59,10 @@
     nav {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 10px;
     }
-    nav a {
+    /* Basic nav links */
+    .btn-nav {
       padding: 12px 20px;
       font-weight: 600;
       border-radius: 30px;
@@ -70,7 +71,7 @@
       font-size: 14px;
       transition: all 0.3s ease;
     }
-    nav a:hover {
+    .btn-nav:hover {
       background: #6a11cb;
       color: #fff;
     }
@@ -88,6 +89,23 @@
     }
     .signup-btn:hover {
       background: linear-gradient(135deg, #2575fc, #6a11cb);
+      transform: translateY(-2px);
+    }
+
+    /* New Find Match Button style */
+    .find-match-btn {
+      background: linear-gradient(135deg, #ff6f61, #f7971e);
+      padding: 12px 20px;
+      border-radius: 30px;
+      color: #fff;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 14px;
+      margin-left: 10px;
+      transition: all 0.3s ease;
+    }
+    .find-match-btn:hover {
+      background: linear-gradient(135deg, #f7971e, #ff6f61);
       transform: translateY(-2px);
     }
 
@@ -267,6 +285,8 @@
   </div>
   <nav>
     <a href="#home" class="btn-nav">Home</a>
+    <!-- Find Match Button -->
+    <a href="skills_directory.html" class="find-match-btn">Find Match</a>
     <a href="#features" class="btn-nav">Features</a>
     <a href="#profiles" class="btn-nav">Profiles</a>
     <a href="#reviews" class="btn-nav">Reviews</a>
