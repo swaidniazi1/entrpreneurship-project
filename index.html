@@ -5,27 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Skill Swap</title>
   
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" />
   
   <style>
+    /* Reset and Base Styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Poppins', sans-serif;
     }
-    
     html {
       scroll-behavior: smooth;
     }
-
     body {
       background: linear-gradient(135deg, #f0f4f8, #ffffff);
       color: #333;
       line-height: 1.6;
     }
 
-    /* HEADER STYLES */
+    /* Fixed Sign Up Button at Top */
+    .top-signup-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1100;
+    }
+    .top-signup-btn a {
+      padding: 12px 24px;
+      background-color: #007BFF;
+      color: #fff;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .top-signup-btn a:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+
+    /* HEADER */
     header {
       position: sticky;
       top: 0;
@@ -39,15 +61,12 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     }
 
-    /* Logo styles */
+    /* Logo & Title */
     .logo-container {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 700;
-      font-size: 22px;
     }
-
     .logo {
       width: 50px;
       height: 50px;
@@ -56,40 +75,40 @@
       justify-content: center;
       font-size: 36px;
       font-weight: 700;
-      background: linear-gradient(to bottom, #007BFF 50%, #D63384 50%);
+      background: linear-gradient(to bottom, #007BFF, #D63384);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       border-radius: 50%;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
-
     .logo:hover {
       transform: scale(1.1);
     }
-
     .site-title {
       font-size: 20px;
       font-weight: 600;
       color: #222;
     }
 
+    /* Navigation */
     nav a {
       margin: 0 15px;
       text-decoration: none;
       color: #444;
       font-weight: 500;
       font-size: 16px;
-      transition: color 0.3s, transform 0.3s;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: background-color 0.3s, transform 0.3s;
     }
-
     nav a:hover {
-      color: #007BFF;
+      background-color: #e0f7fa;
       transform: translateY(-2px);
     }
 
-    /* Sections styling */
- section {
+    /* Sections */
+    section {
       padding: 80px 20px;
       max-width: 1200px;
       margin: auto;
@@ -103,7 +122,6 @@
       border-radius: 20px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.05);
     }
-
     .hero h1 {
       font-size: 54px;
       background: linear-gradient(135deg, #4a6cf7, #d63384);
@@ -112,14 +130,30 @@
       margin-bottom: 20px;
       animation: fadeIn 1s ease-in-out;
     }
-
     .hero p {
       font-size: 20px;
       color: #555;
       margin-top: 10px;
     }
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      margin-top: 20px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      background-color: #007BFF;
+      border-radius: 30px;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    .btn:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
 
-    /* Grid styles for features & profiles */
+    /* Grid for features & profiles */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -135,20 +169,18 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
       transition: transform 0.3s, box-shadow 0.3s;
     }
-
     .card:hover {
       transform: translateY(-8px);
       box-shadow: 0 12px 24px rgba(0,0,0,0.1);
     }
 
-    /* Reviews styles */
+    /* Review styles */
     .review {
       position: relative;
       overflow: hidden;
       cursor: pointer;
       min-height: 100px;
     }
-
     .review p.full {
       max-height: 0;
       opacity: 0;
@@ -156,18 +188,15 @@
       margin-top: 8px;
       color: #555;
     }
-
     .review:hover {
       background: rgba(255,255,255,0.95);
       transform: scale(1.02);
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
-
     .review:hover p.full {
       max-height: 300px;
       opacity: 1;
     }
-
     .tag {
       display: inline-block;
       margin-top: 8px;
@@ -178,7 +207,7 @@
       font-weight: 500;
     }
 
-    /* Footer styles */
+    /* Footer */
     footer {
       background-color: #222;
       color: #eee;
@@ -188,35 +217,7 @@
       font-size: 14px;
     }
 
-    /* Button styles */
-    .btn {
-      display: inline-block;
-      padding: 14px 28px;
-      margin-top: 20px;
-      font-size: 16px;
-      font-weight: 600;
-      color: #fff;
-      background-color: #007BFF;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: background-color 0.3s, transform 0.3s;
-      text-decoration: none;
-    }
-
-    .btn:hover {
-      background-color: #0056b3;
-      transform: translateY(-2px);
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(-20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* Responsive font size for smaller screens */
+    /* Responsive adjustments */
     @media(max-width: 768px) {
       .hero h1 {
         font-size: 36px;
@@ -226,9 +227,20 @@
         font-size: 14px;
       }
     }
+
+    /* Fade animation for hero title */
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
   </style>
 </head>
 <body>
+
+<!-- Top Sign Up Button -->
+<div class="top-signup-btn">
+  <a href="signup.html">Sign Up</a>
+</div>
 
 <header>
   <div class="logo-container">
@@ -236,7 +248,6 @@
     <div class="site-title">Skill Swap</div>
   </div>
   <nav>
-    <!-- Replace Home button with link to skills directory -->
     <a href="skills_directory.html" class="btn">Find Match</a>
     <a href="#features">Features</a>
     <a href="#profiles">Profiles</a>
@@ -244,19 +255,20 @@
   </nav>
 </header>
 
+<!-- Hero Section -->
 <section id="home" class="hero">
   <h1>Skill Swap Platform</h1>
   <p>Exchange skills without money. Learn, teach, and grow together with our innovative platform designed to connect passionate learners and teachers worldwide.</p>
-  <!-- Link button to skills directory -->
   <a href="skills_directory.html" class="btn">Find Your Match</a>
 </section>
 
 <!-- Skills Directory Preview -->
-<section id="skills" style="padding: 100px 20px; background: #f9f9f9;">
+<section id="skills" style="background:#f9f9f9;">
   <h2 style="text-align:center; margin-bottom:30px;">Skills Directory</h2>
   <p style="max-width:800px; margin:auto; font-size:18px; line-height:1.6; text-align:center;">Explore the diverse skills available on our platform, from language learning to technical skills. Connect with users who match your interests and start your exchange today!</p>
 </section>
 
+<!-- Features -->
 <section id="features">
   <h2 style="text-align:center; margin-bottom:30px;">Features</h2>
   <div class="grid">
@@ -270,6 +282,7 @@
   </div>
 </section>
 
+<!-- Profiles -->
 <section id="profiles">
   <h2 style="text-align:center; margin-bottom:30px;">Profiles</h2>
   <div class="grid">
@@ -282,6 +295,7 @@
   </div>
 </section>
 
+<!-- Reviews -->
 <section id="reviews">
   <h2 style="text-align:center; margin-bottom:30px;">User Reviews (Hover to read more)</h2>
   <div class="grid">
@@ -327,6 +341,7 @@
   </div>
 </section>
 
+<!-- Footer -->
 <footer>
   © 2026 Skill Swap Platform
 </footer>
