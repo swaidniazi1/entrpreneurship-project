@@ -38,7 +38,11 @@ header {
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Vibrant purple-blue gradient */
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  /* Updated vibrant purple-blue gradient */
+  background: linear-gradient(135deg, #8e2de2, #4a00e0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.2);
