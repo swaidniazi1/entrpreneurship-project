@@ -103,6 +103,49 @@
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
+   /* Back Button */
+.back-home-btn {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b35, #7c3aed);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+  transition: all 0.3s ease;
+  z-index: 9999;
+}
+
+.back-home-btn:hover {
+  transform: scale(1.1) translateY(-3px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+}
+
+/* Tooltip */
+.back-home-btn .tooltip {
+  position: absolute;
+  left: 55px;
+  background: #151530;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.back-home-btn:hover .tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
   </style>
   <style>body { box-sizing: border-box; }</style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
