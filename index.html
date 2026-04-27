@@ -3,7 +3,7 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skill Swap - Connect &amp; Grow</title><!-- Google Fonts for a modern look -->
+  <title>Skill Swap - Connect &amp; Grow</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&amp;display=swap" rel="stylesheet">
   <style>
     /* ===== MODERN VIBRANT CSS ===== */
@@ -426,6 +426,19 @@
       box-shadow: 0 4px 15px rgba(255, 0, 127, 0.3);
     }
 
+    /* ===== CTA BUTTON SPECIAL HOVER ===== */
+    .cta-button {
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    .cta-button:hover {
+      transform: translateY(-6px) scale(1.15) !important;
+      border-bottom: 3px solid #00ffc8;
+      box-shadow: 0 18px 55px rgba(255, 0, 127, 0.7), 0 0 40px rgba(0, 255, 200, 0.4) !important;
+      letter-spacing: 1px;
+    }
+
     /* ===== FOOTER ===== */
     footer {
       background: linear-gradient(135deg, rgba(15, 12, 41, 0.9), rgba(48, 43, 99, 0.9));
@@ -549,11 +562,11 @@
  <body><!-- Header with Navigation & Sign Up -->
   <header>
    <div class="logo-container">
-    <div class="logo">
-     <img src="WhatsApp+Image+2026-04-27+at+8.42.01+PM.jpeg.png" alt="Skill Swap Logo" loading="lazy" onerror="console.error('Logo failed to load:', this.src); this.style.background='linear-gradient(135deg, #8e2de2, #4a00e0)'; this.style.display='none';">
+    <div class="logo"><img src="WhatsApp+Image+2026-04-27+at+8.42.01+PM.jpeg.png" alt="Skill Swap Logo" loading="lazy" onerror="console.error('Logo failed to load:', this.src); this.style.background='linear-gradient(135deg, #8e2de2, #4a00e0)'; this.style.display='none';">
     </div>
    </div>
-   <nav><a href="#home" class="btn-nav">Home</a> <!-- Find Match Button --> <a href="skills_directory.html" class="find-match-btn">Find Match</a> <a href="#features" class="btn-nav">Features</a> <a href="#profiles" class="btn-nav">Profiles</a> <a href="#reviews" class="btn-nav">Reviews</a> <a href="signup.html" class="signup-btn">Sign Up</a>
+   <nav>
+    <a href="#home" class="btn-nav">Home</a> <!-- Find Match Button --> <a href="skills_directory.html" class="find-match-btn">Find Match</a> <a href="#features" class="btn-nav">Features</a> <a href="#profiles" class="btn-nav">Profiles</a> <a href="#reviews" class="btn-nav">Reviews</a> <a href="signup.html" class="signup-btn">Sign Up</a>
    </nav>
   </header><!-- Hero Section -->
   <section id="home" class="hero">
@@ -617,26 +630,30 @@
   <section id="reviews">
    <h2>User Experiences (Hover &amp; Click to Expand)</h2>
    <div class="grid">
-    <div class="card review"><b>Ayesha Khan (Lahore)</b> <span class="tag">5★</span>
+    <div class="card review">
+     <b>Ayesha Khan (Lahore)</b> <span class="tag">5★</span>
      <p class="full">Skill Swap helped me improve my English speaking skills significantly. I exchanged my graphic design knowledge with native speakers and gained confidence in real conversations. The community is vibrant and supportive, making learning fun and effective. Highly recommended for language learners!</p>
     </div>
-    <div class="card review"><b>Ali Raza (Karachi)</b> <span class="tag">4.8★</span>
+    <div class="card review">
+     <b>Ali Raza (Karachi)</b> <span class="tag">4.8★</span>
      <p class="full">I learned advanced marketing strategies by teaching coding to beginners. The platform creates a valuable exchange where both parties benefit. The feedback and flexible scheduling made it easy to fit into my routine.</p>
-    </div><!-- Adding two more reviews for at least 4 reviews -->
-    <div class="card review"><b>Maria Ali (Lahore)</b> <span class="tag">4.9★</span>
+    </div>
+    <div class="card review">
+     <b>Maria Ali (Lahore)</b> <span class="tag">4.9★</span>
      <p class="full">The community helped me master graphic design. I received valuable feedback and connected with talented artists worldwide. It's a fantastic platform for creatives to grow.</p>
     </div>
-    <div class="card review"><b>Omar Siddiq (Islamabad)</b> <span class="tag">4.7★</span>
+    <div class="card review">
+     <b>Omar Siddiq (Islamabad)</b> <span class="tag">4.7★</span>
      <p class="full">I improved my web development skills by mentoring beginners. The platform makes learning interactive and fun, with great support from fellow learners and mentors.</p>
     </div>
    </div><!-- Sign Up Call to Action -->
-   <div style="text-align:center; margin-top:40px;"><a href="signup.html" class="btn-primary">Join Now &amp; Start Connecting</a>
+   <div style="text-align:center; margin-top:40px;">
+    <a href="signup.html" class="btn-primary cta-button">Join Now &amp; Start Connecting</a>
    </div>
   </section><!-- Footer -->
   <footer>
    <p>© 2026 Skill Swap. All Rights Reserved | Connect &amp; Grow.</p>
-   <div class="social-icons">
-    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i data-lucide="instagram"></i></a> <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i data-lucide="facebook"></i></a> <a href="https://wa.me" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle"></i></a>
+   <div class="social-icons"><a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><i data-lucide="instagram"></i></a> <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><i data-lucide="facebook"></i></a> <a href="https://wa.me" target="_blank" rel="noopener noreferrer"><i data-lucide="message-circle"></i></a>
    </div>
   </footer>
   <script>
@@ -661,15 +678,12 @@ function type() {
   }
 
   if (!isDeleting && charIndex < currentText.length) {
-    // Typing forward
     charIndex++;
     setTimeout(type, 100);
   } else if (isDeleting && charIndex > 0) {
-    // Deleting
     charIndex--;
     setTimeout(type, 50);
   } else {
-    // Pause before next
     if (!isDeleting) {
       isDeleting = true;
       setTimeout(type, 1500);
@@ -681,11 +695,10 @@ function type() {
   }
 }
 
-// Start the headline animation
 type();
-</script>
+  </script>
   <script>
     lucide.createIcons();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f2f23cdd483167a',t:'MTc3NzMwNjY3Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f2f2dedb06a167a',t:'MTc3NzMwNzA4Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
