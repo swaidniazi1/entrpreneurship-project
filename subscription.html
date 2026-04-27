@@ -1,164 +1,330 @@
 <!doctype html>
 <html lang="en" class="h-full">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Skill Swap Plans</title>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Subscription Plans</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Sora', sans-serif; }
 
-<script src="https://cdn.tailwindcss.com/3.4.17"></script>
-<script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(3deg); }
+    }
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(-2deg); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(1.4); opacity: 0; }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
 
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    .card-monthly {
+      animation: fadeUp 0.6s ease-out both;
+      animation-delay: 0.2s;
+    }
+    .card-yearly {
+      animation: fadeUp 0.6s ease-out both;
+      animation-delay: 0.4s;
+    }
+    .floating-shape-1 { animation: float 6s ease-in-out infinite; }
+    .floating-shape-2 { animation: floatReverse 7s ease-in-out infinite; }
+    .floating-shape-3 { animation: float 8s ease-in-out infinite 1s; }
 
-<style>
-*{font-family:'Sora',sans-serif;}
-.plan-card{transition:0.4s;}
-.plan-card:hover{transform:translateY(-10px) scale(1.02);}
-</style>
-</head>
+    .plan-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .plan-card:hover {
+      transform: translateY(-12px) scale(1.02);
+    }
+    .plan-card:hover .card-glow {
+      opacity: 1;
+    }
+    .card-glow {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
 
-<body style="background:#0a0a1a; color:white;">
+    .subscribe-btn {
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .subscribe-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+    .subscribe-btn:hover::after { left: 100%; }
+    .subscribe-btn:hover { transform: scale(1.05); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
 
-<div class="flex flex-col items-center py-16 px-4">
+    .badge-shimmer {
+      background: linear-gradient(90deg, #ff6b35, #ffb347, #ff6b35);
+      background-size: 200% auto;
+      animation: shimmer 3s linear infinite;
+    }
 
-<h1 class="text-5xl font-bold mb-4 text-center">Skill Swap Plans</h1>
-<p class="text-gray-400 mb-12 text-center">Learn, teach, and grow by exchanging skills with others.</p>
+    .feature-item {
+      transition: all 0.2s ease;
+    }
+    .feature-item:hover {
+      transform: translateX(4px);
+    }
 
-<div class="flex flex-col md:flex-row gap-8 max-w-6xl w-full">
+    .toggle-track {
+      transition: background-color 0.3s ease;
+    }
+    .toggle-knob {
+      transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
 
-<!-- FREE PLAN -->
-<div class="plan-card flex-1 p-6 rounded-xl border border-gray-700 bg-[#151530]">
-<h2 class="text-xl font-bold mb-4">Free</h2>
-<h3 class="text-4xl font-bold mb-6">Rs 0</h3>
+    .price-display {
+      transition: all 0.4s ease;
+    }
 
-<ul class="space-y-3 mb-6 text-gray-300">
-<li>✔ Basic skill exchange access</li>
-<li>✔ Connect with 2 users/month</li>
-<li>✔ Post 1 skill</li>
-<li>✔ Community support</li>
-</ul>
+    .title-gradient {
+      background: linear-gradient(135deg, #ff6b35, #ff3e6c, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app" class="h-full w-full overflow-auto relative" style="background: #0a0a1a;"><!-- Floating decorative shapes -->
+   <div class="floating-shape-1 absolute top-10 left-10 w-32 h-32 rounded-full opacity-20" style="background: radial-gradient(circle, #ff6b35, transparent); filter: blur(40px);"></div>
+   <div class="floating-shape-2 absolute top-20 right-16 w-40 h-40 rounded-full opacity-15" style="background: radial-gradient(circle, #7c3aed, transparent); filter: blur(50px);"></div>
+   <div class="floating-shape-3 absolute bottom-20 left-1/4 w-36 h-36 rounded-full opacity-15" style="background: radial-gradient(circle, #ff3e6c, transparent); filter: blur(45px);"></div>
+   <div class="relative z-10 flex flex-col items-center px-4 py-12 sm:py-16 md:py-20"><!-- Header -->
+    <div class="text-center max-w-2xl mb-12" style="animation: fadeUp 0.5s ease-out both;">
+     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase mb-6" style="background: rgba(255,107,53,0.15); color: #ff6b35; border: 1px solid rgba(255,107,53,0.25);"><i data-lucide="sparkles" style="width:14px;height:14px;"></i> <span>Premium Access</span>
+     </div>
+     <h1 id="page-title" class="text-4xl sm:text-5xl md:text-6xl font-800 title-gradient mb-4 leading-tight">Choose Your Plan</h1>
+     <p id="page-subtitle" class="text-base sm:text-lg" style="color: #8b8ba3;">Unlock premium features and supercharge your productivity with our flexible plans.</p>
+    </div><!-- Toggle -->
+    <div class="flex items-center gap-4 mb-12" style="animation: fadeUp 0.55s ease-out both;"><span id="toggle-monthly-label" class="text-sm font-600" style="color: #ffffff;">Monthly</span> <button id="billing-toggle" onclick="toggleBilling()" class="relative w-14 h-7 rounded-full toggle-track cursor-pointer" style="background: #2a2a4a; border: 2px solid #3a3a5c;" aria-label="Toggle billing period">
+      <div id="toggle-knob" class="toggle-knob absolute top-0.5 left-0.5 w-5 h-5 rounded-full" style="background: #ff6b35;"></div></button> <span id="toggle-yearly-label" class="text-sm font-500" style="color: #8b8ba3;">Yearly</span> <span class="badge-shimmer text-[10px] font-700 px-2.5 py-1 rounded-full text-white tracking-wide">SAVE 29%</span>
+    </div><!-- Cards -->
+    <div class="flex flex-col md:flex-row gap-6 lg:gap-8 w-full max-w-4xl"><!-- Monthly Card -->
+     <div class="card-monthly plan-card flex-1 relative rounded-2xl p-[1px]" style="background: linear-gradient(135deg, #2a2a4a, #1a1a3a);">
+      <div class="card-glow absolute inset-0 rounded-2xl" style="background: linear-gradient(135deg, rgba(255,107,53,0.1), transparent); filter: blur(20px);"></div>
+      <div class="relative rounded-2xl p-7 sm:p-8 h-full flex flex-col" style="background: linear-gradient(180deg, #151530, #0e0e24); border: 1px solid #2a2a4a;">
+       <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(255,107,53,0.15);"><i data-lucide="zap" style="width:20px;height:20px;color:#ff6b35;"></i>
+        </div>
+        <h2 id="monthly-name" class="text-xl font-700" style="color: #ffffff;">Monthly</h2>
+       </div>
+       <div class="price-display mb-6">
+        <div class="flex items-baseline gap-1"><span id="monthly-price" class="text-5xl font-800" style="color: #ffffff;">₹700</span> <span class="text-sm" style="color: #8b8ba3;">/month</span>
+        </div>
+        <p class="text-xs mt-1.5" style="color: #5a5a7a;">Billed monthly. Cancel anytime.</p>
+       </div>
+       <ul class="space-y-3.5 mb-8 flex-1">
+        <li class="feature-item flex items-center gap-3">
+         <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255,107,53,0.15);">
+          <i data-lucide="check" style="width:12px;height:12px;color:#ff6b35;"></i>
+         </div><span class="text-sm" style="color: #c5c5d6;">All core features included</span></li>
+        <li class="feature-item flex items-center gap-3">
+         <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255,107,53,0.15);">
+          <i data-lucide="check" style="width:12px;height:12px;color:#ff6b35;"></i>
+         </div><span class="text-sm" style="color: #c5c5d6;">5 GB cloud storage</span></li>
+        <li class="feature-item flex items-center gap-3">
+         <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255,107,53,0.15);">
+          <i data-lucide="check" style="width:12px;height:12px;color:#ff6b35;"></i>
+         </div><span class="text-sm" style="color: #c5c5d6;">Email support</span></li>
+        <li class="feature-item flex items-center gap-3">
+         <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(255,107,53,0.15);">
+          <i data-lucide="check" style="width:12px;height:12px;color:#ff6b35;"></i>
+         </div><span class="text-sm" style="color: #c5c5d6;">Up to 3 team members</span></li>
+       </ul><button id="monthly-btn" onclick="selectPlan('monthly')" class="subscribe-btn w-full py-3.5 rounded-xl font-600 text-sm tracking-wide" style="background: transparent; color: #ff6b35; border: 2px solid #ff6b35;"> <span id="cta-monthly">Get Started</span> </button>
+      </div>
+     </div><!-- Yearly Card -->
+     <div class="card-yearly plan-card flex-1 relative rounded-2xl p-[1px]" style="background: linear-gradient(135deg, #ff6b35, #ff3e6c, #7c3aed);">
+      <div class="card-glow absolute inset-0 rounded-2xl" style="background: linear-gradient(135deg, rgba(255,62,108,0.3), rgba(124,58,237,0.2)); filter: blur(25px);"></div>
+      <div class="relative rounded-2xl p-7 sm:p-8 h-full flex flex-col" style="background: linear-gradient(180deg, #1a1035, #0e0e24);">
+       <div class="absolute -top-3 right-6">
+        <div class="badge-shimmer px-3 py-1 rounded-full text-[10px] font-700 text-white tracking-wider uppercase">
+         Most Popular
+        </div>
+       </div>
+       <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 rounded-xl flex items-center justify-center" style="background: rgba(124,58,237,0.2);"><i data-lucide="crown" style="width:20px;height:20px;color:#a78bfa;"></i>
+        </div>
+        <h2 id="yearly-name" class="text-xl font-700" style="color: #ffffff;">Yearly</h2>
+       </div>
+       <div class="price-display mb-6">
+        <div class="flex items-baseline gap-1"><span id="yearly-price" class="text-5xl font-800" style="color: #ffffff;">₹6,000</span> <span class="text-sm" style="color: #8b8ba3;">/year</span>
+        </div>
+        <p class="text-xs mt-1.5" style="color: #5a5a7a;">That's just ₹500/month. <span style="color:#a78bfa; font-weight:600;">Save ₹2,400!</span></p>
+       </div>
+       <ul class="space-y-3.5 mb-8 flex-1">
+        <li class="feature-item flex items-center gap-3">
+         <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(124,58,237,0.2);">
+          <i data-lucide="check" style="width:12px;height:12px;color:#a78bfa;"></i>
+         </div><span class="text-sm" style="color: #c5c5d6;">Everything in Monthly</span></li>
+        <li class="feature-item flex items-center gap-3">
+         <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(124,58,237,0.2);">
+          <i data-lucide="check" style="width:12px;height:12px;color:#a78bfa;"></i>
+         </div><span class="text-sm" style="color: #c5c5d6;">50 GB cloud storage</span></li>
+        <li class="feature-item flex items-center gap-3">
+         <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(124,58,237,0.2);">
+          <i data-lucide="check" style="width:12px;height:12px;color:#a78bfa;"></i>
+         </div><span class="text-sm" style="color: #c5c5d6;">Priority 24/7 support</span></li>
+        <li class="feature-item flex items-center gap-3">
+         <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(124,58,237,0.2);">
+          <i data-lucide="check" style="width:12px;height:12px;color:#a78bfa;"></i>
+         </div><span class="text-sm" style="color: #c5c5d6;">Unlimited team members</span></li>
+        <li class="feature-item flex items-center gap-3">
+         <div class="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style="background: rgba(124,58,237,0.2);">
+          <i data-lucide="check" style="width:12px;height:12px;color:#a78bfa;"></i>
+         </div><span class="text-sm" style="color: #c5c5d6;">Advanced analytics dashboard</span></li>
+       </ul><button id="yearly-btn" onclick="selectPlan('yearly')" class="subscribe-btn w-full py-3.5 rounded-xl font-600 text-sm tracking-wide text-white" style="background: linear-gradient(135deg, #ff6b35, #ff3e6c, #7c3aed);"> <span id="cta-yearly">Get Started</span> </button>
+      </div>
+     </div>
+    </div><!-- Trust badges -->
+    <div class="flex flex-wrap items-center justify-center gap-6 mt-12" style="animation: fadeUp 0.7s ease-out both;">
+     <div class="flex items-center gap-2" style="color: #5a5a7a;"><i data-lucide="shield-check" style="width:16px;height:16px;"></i> <span class="text-xs">Secure Payment</span>
+     </div>
+     <div class="flex items-center gap-2" style="color: #5a5a7a;"><i data-lucide="refresh-cw" style="width:16px;height:16px;"></i> <span class="text-xs">7-Day Money Back</span>
+     </div>
+     <div class="flex items-center gap-2" style="color: #5a5a7a;"><i data-lucide="lock" style="width:16px;height:16px;"></i> <span class="text-xs">Cancel Anytime</span>
+     </div>
+    </div><!-- Success overlay -->
+    <div id="success-overlay" class="fixed inset-0 z-50 flex items-center justify-center hidden" style="background: rgba(10,10,26,0.9); backdrop-filter: blur(10px);">
+     <div class="text-center p-8 rounded-2xl max-w-sm mx-4" style="background: #151530; border: 1px solid #2a2a4a; animation: fadeUp 0.4s ease-out both;">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background: rgba(52,211,153,0.15);"><i data-lucide="check-circle" style="width:32px;height:32px;color:#34d399;"></i>
+      </div>
+      <h3 class="text-xl font-700 mb-2" style="color:#fff;">You're All Set! 🎉</h3>
+      <p id="success-msg" class="text-sm mb-6" style="color:#8b8ba3;">Welcome to the plan.</p><button onclick="closeSuccess()" class="px-6 py-2.5 rounded-xl text-sm font-600 text-white" style="background: linear-gradient(135deg, #ff6b35, #ff3e6c);">Continue</button>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+  let isYearly = false;
 
-<button onclick="selectPlan('Free')" class="w-full py-3 border border-orange-500 text-orange-500 rounded-lg">
-Start Free
-</button>
-</div>
+  function toggleBilling() {
+    isYearly = !isYearly;
+    const knob = document.getElementById('toggle-knob');
+    const track = document.getElementById('billing-toggle');
+    const mLabel = document.getElementById('toggle-monthly-label');
+    const yLabel = document.getElementById('toggle-yearly-label');
 
-<!-- MONTHLY -->
-<div class="plan-card flex-1 p-6 rounded-xl border border-gray-700 bg-[#151530]">
-<h2 class="text-xl font-bold mb-4">Monthly</h2>
-<h3 class="text-4xl font-bold mb-6">Rs 700</h3>
+    if (isYearly) {
+      knob.style.transform = 'translateX(28px)';
+      track.style.background = '#7c3aed';
+      knob.style.background = '#ffffff';
+      mLabel.style.color = '#8b8ba3';
+      yLabel.style.color = '#ffffff';
+      yLabel.style.fontWeight = '600';
+      mLabel.style.fontWeight = '500';
+    } else {
+      knob.style.transform = 'translateX(0)';
+      track.style.background = '#2a2a4a';
+      knob.style.background = '#ff6b35';
+      mLabel.style.color = '#ffffff';
+      yLabel.style.color = '#8b8ba3';
+      mLabel.style.fontWeight = '600';
+      yLabel.style.fontWeight = '500';
+    }
+  }
 
-<ul class="space-y-3 mb-6 text-gray-300">
-<li>✔ Full platform access</li>
-<li>✔ Connect with 5 users/month</li>
-<li>✔ Post up to 3 skills</li>
-<li>✔ Chat support</li>
-</ul>
+  function selectPlan(plan) {
+    const overlay = document.getElementById('success-overlay');
+    const msg = document.getElementById('success-msg');
+    const planName = plan === 'monthly' ? 'Monthly (₹700/mo)' : 'Yearly (₹6,000/yr)';
+    msg.textContent = `You selected the ${planName} plan. Welcome aboard!`;
+    overlay.classList.remove('hidden');
+  }
 
-<button onclick="openPayment('Monthly',700)" class="w-full py-3 border border-orange-500 text-orange-500 rounded-lg">
-Subscribe
-</button>
-</div>
+  function closeSuccess() {
+    document.getElementById('success-overlay').classList.add('hidden');
+  }
 
-<!-- YEARLY -->
-<div class="plan-card flex-1 p-6 rounded-xl border border-purple-500 bg-[#151530]">
-<h2 class="text-xl font-bold mb-4">Yearly</h2>
-<h3 class="text-4xl font-bold mb-6">Rs 6000</h3>
+  // Element SDK
+  const defaultConfig = {
+    background_color: '#0a0a1a',
+    surface_color: '#151530',
+    text_color: '#ffffff',
+    primary_action: '#ff6b35',
+    secondary_action: '#7c3aed',
+    font_family: 'Sora',
+    font_size: 16,
+    page_title: 'Choose Your Plan',
+    page_subtitle: 'Unlock premium features and supercharge your productivity with our flexible plans.',
+    monthly_name: 'Monthly',
+    yearly_name: 'Yearly',
+    cta_text: 'Get Started'
+  };
 
-<ul class="space-y-3 mb-6 text-gray-300">
-<li>✔ Everything in Monthly</li>
-<li>✔ Unlimited skill posts</li>
-<li>✔ Unlimited connections</li>
-<li>✔ Priority support</li>
-<li>✔ Profile boosting</li>
-</ul>
+  async function onConfigChange(config) {
+    const c = key => config[key] || defaultConfig[key];
+    const font = c('font_family');
+    const baseSize = c('font_size');
+    const fontStack = `${font}, sans-serif`;
 
-<button onclick="openPayment('Yearly',6000)" class="w-full py-3 bg-gradient-to-r from-orange-500 to-purple-500 rounded-lg">
-Subscribe
-</button>
-</div>
+    document.getElementById('app').style.background = c('background_color');
+    document.getElementById('page-title').textContent = c('page_title');
+    document.getElementById('page-title').style.fontFamily = fontStack;
+    document.getElementById('page-title').style.fontSize = `${baseSize * 2.8}px`;
+    document.getElementById('page-subtitle').textContent = c('page_subtitle');
+    document.getElementById('page-subtitle').style.fontFamily = fontStack;
+    document.getElementById('page-subtitle').style.fontSize = `${baseSize}px`;
+    document.getElementById('monthly-name').textContent = c('monthly_name');
+    document.getElementById('yearly-name').textContent = c('yearly_name');
+    document.getElementById('cta-monthly').textContent = c('cta_text');
+    document.getElementById('cta-yearly').textContent = c('cta_text');
 
-</div>
-</div>
+    document.querySelectorAll('.plan-card h2, .plan-card span, .plan-card li span, .plan-card button, .plan-card p').forEach(el => {
+      el.style.fontFamily = fontStack;
+    });
+  }
 
-<!-- PAYMENT MODAL -->
-<div id="paymentModal" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-70">
+  if (window.elementSdk) {
+    window.elementSdk.init({
+      defaultConfig,
+      onConfigChange,
+      mapToCapabilities: (config) => {
+        const c = key => config[key] || defaultConfig[key];
+        const make = (key) => ({
+          get: () => c(key),
+          set: (v) => { config[key] = v; window.elementSdk.setConfig({ [key]: v }); }
+        });
+        return {
+          recolorables: [make('background_color'), make('surface_color'), make('text_color'), make('primary_action'), make('secondary_action')],
+          borderables: [],
+          fontEditable: make('font_family'),
+          fontSizeable: { get: () => c('font_size'), set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+        };
+      },
+      mapToEditPanelValues: (config) => new Map([
+        ['page_title', config.page_title || defaultConfig.page_title],
+        ['page_subtitle', config.page_subtitle || defaultConfig.page_subtitle],
+        ['monthly_name', config.monthly_name || defaultConfig.monthly_name],
+        ['yearly_name', config.yearly_name || defaultConfig.yearly_name],
+        ['cta_text', config.cta_text || defaultConfig.cta_text]
+      ])
+    });
+  }
 
-<div class="bg-[#151530] p-8 rounded-xl w-96">
-
-<h2 class="text-xl font-bold mb-4">Payment</h2>
-
-<p id="planInfo" class="mb-4 text-gray-300"></p>
-
-<select id="paymentMethod" class="w-full p-3 mb-4 bg-[#0e0e24] border border-gray-600 rounded">
-<option>JazzCash</option>
-<option>EasyPaisa</option>
-</select>
-
-<input type="text" placeholder="Enter Mobile Number" class="w-full p-3 mb-4 bg-[#0e0e24] border border-gray-600 rounded">
-
-<button onclick="confirmPayment()" class="w-full py-3 bg-orange-500 rounded mb-2">
-Pay Now
-</button>
-
-<button onclick="closePayment()" class="w-full py-2 text-gray-400">
-Cancel
-</button>
-
-</div>
-</div>
-
-<!-- SUCCESS -->
-<div id="successBox" class="fixed inset-0 hidden items-center justify-center bg-black bg-opacity-70">
-
-<div class="bg-[#151530] p-8 rounded-xl text-center">
-
-<h2 class="text-2xl mb-4">✅ Payment Successful</h2>
-<p id="successText" class="mb-4 text-gray-300"></p>
-
-<button onclick="closeSuccess()" class="px-6 py-2 bg-orange-500 rounded">
-Continue
-</button>
-
-</div>
-</div>
-
-<script>
-let selectedPlan = "";
-let selectedPrice = 0;
-
-function selectPlan(plan){
-document.getElementById("successText").innerText = "You selected the " + plan + " plan.";
-document.getElementById("successBox").style.display="flex";
-}
-
-function openPayment(plan,price){
-selectedPlan = plan;
-selectedPrice = price;
-
-document.getElementById("paymentModal").style.display="flex";
-document.getElementById("planInfo").innerText = plan + " Plan - Rs " + price;
-}
-
-function closePayment(){
-document.getElementById("paymentModal").style.display="none";
-}
-
-function confirmPayment(){
-closePayment();
-
-document.getElementById("successText").innerText =
-"You successfully subscribed to " + selectedPlan + " plan (Rs " + selectedPrice + ")";
-
-document.getElementById("successBox").style.display="flex";
-}
-
-function closeSuccess(){
-document.getElementById("successBox").style.display="none";
-}
-
-lucide.createIcons();
+  lucide.createIcons();
 </script>
-
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f2f61a432dd167a',t:'MTc3NzMwOTIwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
