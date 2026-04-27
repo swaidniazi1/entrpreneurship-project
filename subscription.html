@@ -249,7 +249,7 @@
   function selectPlan(plan) {
     const overlay = document.getElementById('success-overlay');
     const msg = document.getElementById('success-msg');
-    const planName = plan === 'monthly' ? 'Monthly (₹700/mo)' : 'Yearly (₹6,000/yr)';
+    const planName = plan === 'monthly' ? 'Monthly (Rs700/mo)' : 'Yearly (Rs6,000/yr)';
     msg.textContent = `You selected the ${planName} plan. Welcome aboard!`;
     overlay.classList.remove('hidden');
   }
